@@ -17,4 +17,12 @@ public class ValidatorFactory {
 			EnglishLanguageValidator = new EnglishLanguageValidator() ;
 		return EnglishLanguageValidator ;
 	}
+	
+	private static DateValidator dateValidator;
+
+	public synchronized static DateValidator getDateValidator () {
+		if(dateValidator == null)
+			dateValidator = new DateValidator() ;
+		return dateValidator ;
+	}
 }

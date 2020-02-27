@@ -1,5 +1,7 @@
 package com.ejada.validations.core;
 
+import com.ejada.validations.core.enums.LengthOperator;
+
 public class ValidatorFactory {
 	
 	private static ArabicLanguageValidator arabicLanguageValidator;
@@ -24,5 +26,17 @@ public class ValidatorFactory {
 		if(dateValidator == null)
 			dateValidator = new DateValidator() ;
 		return dateValidator ;
+	}
+	
+	private static LengthValidator lengthValidator;
+
+	public synchronized static LengthValidator getLengthValidator (LengthOperator op, int length) {
+		if(lengthValidator == null)
+			lengthValidator = new LengthValidator(op, length) ;
+		else {
+			lengthValidator.setLength(length);
+			lengthValidator.setOperator(op);
+		}
+		return lengthValidator ;
 	}
 }

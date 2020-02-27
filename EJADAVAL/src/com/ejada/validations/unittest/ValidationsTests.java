@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.ejada.validations.core.ValidatorFactory;
+import com.ejada.validations.core.enums.LengthOperator;
 
 class ValidationsTests {
 	
@@ -107,5 +108,40 @@ class ValidationsTests {
 
 	}
 	
+	@Test
+	void sanityLengthLessBad() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.LESS,1).validate("Ahmed hamad").is_valid(), false);
+
+	}
+	
+	@Test
+	void sanityLengthLessGOOD() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.LESS,50).validate("Ahmed hamad").is_valid(), true);
+
+	}
+	
+	@Test
+	void sanityLengthGreaterBad() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.GREATER,1).validate("a").is_valid(), false);
+
+	}
+	
+	@Test
+	void sanityLengthGreaterGOOD() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.GREATER,5).validate("Ahmed hamad").is_valid(), true);
+
+	}
+	
+	@Test
+	void sanityLengthEqualGOOD() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.EQUAL,5).validate("Ahmed").is_valid(), true);
+
+	}
+	
+	@Test
+	void sanityLengthEqualBAD() {
+		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.EQUAL,7).validate("Ahmed").is_valid(), false);
+
+	}
 
 }

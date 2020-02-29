@@ -143,5 +143,23 @@ class ValidationsTests {
 		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.EQUAL,7).validate("Ahmed").is_valid(), false);
 
 	}
+	
+	@Test
+	void sanityNumericBad1() {
+		assertEquals(ValidatorFactory.getNumericValidator().validate("Ahmed").is_valid(), false);
+
+	}
+	
+	@Test
+	void sanityNumericBad2() {
+		assertEquals(ValidatorFactory.getNumericValidator().validate("12123909124.1230412309423409").is_valid(), false);
+
+	}
+	
+	@Test
+	void sanityNumericGood() {
+		assertEquals(ValidatorFactory.getNumericValidator().validate("121239091241230412309423409").is_valid(), true);
+
+	}
 
 }

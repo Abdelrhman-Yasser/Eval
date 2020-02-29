@@ -39,4 +39,12 @@ public class ValidatorFactory {
 		}
 		return lengthValidator ;
 	}
+	
+	private static NumericValidator numericValidator;
+
+	public synchronized static NumericValidator getNumericValidator () {
+		if(numericValidator == null)
+			numericValidator = new NumericValidator() ;
+		return numericValidator ;
+	}
 }

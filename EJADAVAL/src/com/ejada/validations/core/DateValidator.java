@@ -2,8 +2,8 @@ package com.ejada.validations.core;
 
 import java.text.SimpleDateFormat;
 
-import com.ejada.validations.errors.DateResult;
-import com.ejada.validations.errors.ValidationResult;
+import com.ejada.validations.result.DateResult;
+import com.ejada.validations.result.ValidationResult;
 
 public class DateValidator implements Validator{
 

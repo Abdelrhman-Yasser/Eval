@@ -1,7 +1,7 @@
 package com.ejada.validations.core;
 
-import com.ejada.validations.errors.ArabicLanguageResult;
-import com.ejada.validations.errors.ValidationResult;
+import com.ejada.validations.result.ArabicLanguageResult;
+import com.ejada.validations.result.ValidationResult;
 
 public class ArabicLanguageValidator implements Validator{
 	

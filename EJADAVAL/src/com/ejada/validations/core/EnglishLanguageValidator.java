@@ -1,7 +1,7 @@
 package com.ejada.validations.core;
 
-import com.ejada.validations.errors.EnglishLanguageResult;
-import com.ejada.validations.errors.ValidationResult;
+import com.ejada.validations.result.EnglishLanguageResult;
+import com.ejada.validations.result.ValidationResult;
 
 public class EnglishLanguageValidator implements Validator{
 	

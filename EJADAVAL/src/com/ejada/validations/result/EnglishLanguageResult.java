@@ -1,14 +1,13 @@
-package com.ejada.validations.errors;
+package com.ejada.validations.result;
 
-public class LengthResult implements ValidationResult {
+public class EnglishLanguageResult implements ValidationResult {
 
-	
 	private final String message = "" ;
 	private boolean valid;
 	
-	public LengthResult(boolean valid) {
+	public EnglishLanguageResult(boolean valid) {
 		super();
-		this.valid = valid;
+		this.valid = valid ;
 	}
 
 	@Override
@@ -22,5 +21,6 @@ public class LengthResult implements ValidationResult {
 		// TODO Auto-generated method stub
 		return valid;
 	}
+
 
 }

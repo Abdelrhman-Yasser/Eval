@@ -1,12 +1,12 @@
-package com.ejada.validations.errors;
+package com.ejada.validations.result;
 
-public class DateResult implements ValidationResult {
+public class LengthResult implements ValidationResult {
 
 	
 	private final String message = "" ;
 	private boolean valid;
 	
-	public DateResult(boolean valid) {
+	public LengthResult(boolean valid) {
 		super();
 		this.valid = valid;
 	}

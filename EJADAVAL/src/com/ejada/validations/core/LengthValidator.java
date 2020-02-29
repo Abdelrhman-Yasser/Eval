@@ -1,8 +1,8 @@
 package com.ejada.validations.core;
 
 import com.ejada.validations.core.enums.LengthOperator;
-import com.ejada.validations.errors.LengthResult;
-import com.ejada.validations.errors.ValidationResult;
+import com.ejada.validations.result.LengthResult;
+import com.ejada.validations.result.ValidationResult;
 
 public class LengthValidator implements Validator{
 	

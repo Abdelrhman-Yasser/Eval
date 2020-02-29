@@ -1,13 +1,14 @@
-package com.ejada.validations.errors;
+package com.ejada.validations.result;
 
-public class ArabicLanguageResult implements ValidationResult {
+public class DateResult implements ValidationResult {
 
+	
 	private final String message = "" ;
 	private boolean valid;
 	
-	public ArabicLanguageResult(boolean valid) {
+	public DateResult(boolean valid) {
 		super();
-		this.valid = valid ;
+		this.valid = valid;
 	}
 
 	@Override
@@ -21,6 +22,5 @@ public class ArabicLanguageResult implements ValidationResult {
 		// TODO Auto-generated method stub
 		return valid;
 	}
-
 
 }

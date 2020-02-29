@@ -1,11 +1,11 @@
-package com.ejada.validations.errors;
+package com.ejada.validations.result;
 
-public class EnglishLanguageResult implements ValidationResult {
+public class ArabicLanguageResult implements ValidationResult {
 
 	private final String message = "" ;
 	private boolean valid;
 	
-	public EnglishLanguageResult(boolean valid) {
+	public ArabicLanguageResult(boolean valid) {
 		super();
 		this.valid = valid ;
 	}

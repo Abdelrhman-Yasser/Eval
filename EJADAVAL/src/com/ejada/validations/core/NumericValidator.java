@@ -7,7 +7,7 @@ public class NumericValidator implements Validator {
 
 	@Override
 	public ValidationResult validate(String field) {
-		return new NumericResult(field.matches("^[0-9]+$"));
+		return new NumericResult(field.matches("^[-+]?[0-9]+$"));
 	}
 
 }

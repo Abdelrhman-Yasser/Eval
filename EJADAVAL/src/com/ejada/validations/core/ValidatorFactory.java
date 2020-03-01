@@ -1,48 +1,47 @@
 package com.ejada.validations.core;
 
-import com.ejada.validations.core.enums.LengthOperator;
+import com.ejada.validations.complex.ArabicValidationConfig;
+import com.ejada.validations.complex.DateValidationConfig;
+import com.ejada.validations.complex.EnglishValidationConfig;
+import com.ejada.validations.complex.ValidationType;
 
 public class ValidatorFactory {
 	
 	private static ArabicLanguageValidator arabicLanguageValidator;
 
-	public synchronized static ArabicLanguageValidator getArabicLanguageValidator () {
+	private synchronized static ArabicLanguageValidator getArabicLanguageValidator () {
 		if(arabicLanguageValidator == null)
-			arabicLanguageValidator = new ArabicLanguageValidator() ;
+			arabicLanguageValidator = new ArabicLanguageValidator(new ArabicValidationConfig()) ;
 		return arabicLanguageValidator ;
 	}
 	
 	private static EnglishLanguageValidator EnglishLanguageValidator;
 	
-	public synchronized static EnglishLanguageValidator getEnglishLanguageValidator () {
+	private synchronized static EnglishLanguageValidator getEnglishLanguageValidator () {
 		if(EnglishLanguageValidator == null)
-			EnglishLanguageValidator = new EnglishLanguageValidator() ;
+			EnglishLanguageValidator = new EnglishLanguageValidator(new EnglishValidationConfig()) ;
 		return EnglishLanguageValidator ;
 	}
 	
 	private static DateValidator dateValidator;
 
-	public synchronized static DateValidator getDateValidator () {
+	private synchronized static DateValidator getDateValidator () {
 		if(dateValidator == null)
-			dateValidator = new DateValidator() ;
+			dateValidator = new DateValidator(new DateValidationConfig()) ;
 		return dateValidator ;
 	}
 	
 	private static LengthValidator lengthValidator;
 
-	public synchronized static LengthValidator getLengthValidator (LengthOperator op, int length) {
+	private synchronized static LengthValidator getLengthValidator () {
 		if(lengthValidator == null)
-			lengthValidator = new LengthValidator(op, length) ;
-		else {
-			lengthValidator.setLength(length);
-			lengthValidator.setOperator(op);
-		}
+			lengthValidator = new LengthValidator() ;
 		return lengthValidator ;
 	}
 	
 	private static NumericValidator numericValidator;
 
-	public synchronized static NumericValidator getNumericValidator () {
+	private synchronized static NumericValidator getNumericValidator () {
 		if(numericValidator == null)
 			numericValidator = new NumericValidator() ;
 		return numericValidator ;
@@ -50,7 +49,7 @@ public class ValidatorFactory {
 	
 	private static FloatValidator floatValidator;
 
-	public synchronized static FloatValidator getFloatValidator () {
+	private synchronized static FloatValidator getFloatValidator () {
 		if(floatValidator == null)
 			floatValidator = new FloatValidator() ;
 		return floatValidator ;
@@ -58,10 +57,30 @@ public class ValidatorFactory {
 	
 	private static RequiredValidator requiredValidator;
 
-	public synchronized static RequiredValidator getRequiredValidator () {
+	private synchronized static RequiredValidator getRequiredValidator () {
 		if(requiredValidator == null)
 			requiredValidator = new RequiredValidator() ;
 		return requiredValidator ;
+	}
+	
+	public static Validator getValidator(ValidationType type) {
+		switch (type) {
+			case ArabicLang:
+				return getArabicLanguageValidator();
+			case EnglishLang:
+				return getEnglishLanguageValidator();
+			case Date:
+				return getDateValidator();
+			case Float:
+				return getFloatValidator();
+			case Length:
+				return getLengthValidator();
+			case Number:
+				return getNumericValidator();
+			case Required:
+				return getRequiredValidator();
+		}
+		return null;
 	}
 	
 }

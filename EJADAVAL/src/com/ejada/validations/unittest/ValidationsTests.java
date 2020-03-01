@@ -1,205 +1,324 @@
 package com.ejada.validations.unittest;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import com.ejada.validations.complex.ArabicValidationConfig;
+import com.ejada.validations.complex.ComplexValidator;
+import com.ejada.validations.complex.DateValidationConfig;
+import com.ejada.validations.complex.EnglishValidationConfig;
+import com.ejada.validations.complex.FloatValidationConfig;
+import com.ejada.validations.complex.LengthValidationConfig;
+import com.ejada.validations.complex.NumericValidationConfig;
+import com.ejada.validations.complex.RequiredValidationConfig;
+import com.ejada.validations.complex.ValidationConfig;
+import com.ejada.validations.complex.ValidationType;
+import com.ejada.validations.core.ArabicLanguageValidator;
+import com.ejada.validations.core.DateValidator;
+import com.ejada.validations.core.EnglishLanguageValidator;
+import com.ejada.validations.core.FloatValidator;
+import com.ejada.validations.core.LengthValidator;
+import com.ejada.validations.core.NumericValidator;
+import com.ejada.validations.core.RequiredValidator;
 import com.ejada.validations.core.ValidatorFactory;
 import com.ejada.validations.core.enums.LengthOperator;
+import com.ejada.validations.result.ValidationResult;
 
 class ValidationsTests {
 	
 	@Test
 	void sanityArabic1() {
-		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate("احمد").is_valid(), true);
+		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
+		val.setConfig(new ArabicValidationConfig());
+		assertEquals(val.validate("احمد").is_valid(), true);
 	}
 	
 	@Test
 	void sanityArabic2() {
-		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate("اح1123مد").is_valid(), false);
+		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
+		val.setConfig(new ArabicValidationConfig());
+		assertEquals(val.validate("اح1123مد").is_valid(), false);
 	}
 	
 	@Test
 	void sanityArabic3() {
-		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate("احمد  hamad").is_valid(),  false);
+		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
+		val.setConfig(new ArabicValidationConfig());
+		assertEquals(val.validate("احمد  hamad").is_valid(),  false);
 	}
 	
 	@Test
 	void sanityArabic4() {
-		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate(" ").is_valid(),  true);
+		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
+		val.setConfig(new ArabicValidationConfig());
+		assertEquals(val.validate(" ").is_valid(),  true);
 	}
 	
 	@Test
 	void sanityEnglish1() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate("اح1123مد").is_valid(), false);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate("اح1123مد").is_valid(), false);
 	}
 	
 	@Test
 	void sanityEnglish2() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate("احمد").is_valid(), false);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate("احمد").is_valid(), false);
 	}
 	
 	@Test
 	void sanityEnglish3() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate("اح1123مد").is_valid(), false);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate("اح1123مد").is_valid(), false);
 	}
 	
 	@Test
 	void sanityEnglish4() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate("احمد  حامد").is_valid(),  false);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate("احمد  حامد").is_valid(),  false);
 	}
 	
 	@Test
 	void sanityEnglish5() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate("احمد  hamad").is_valid(),  false);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate("احمد  hamad").is_valid(),  false);
 	}
 	
 	@Test
 	void sanityEnglish6() {
-		assertEquals(ValidatorFactory.getEnglishLanguageValidator().validate(" ").is_valid(),  true);
-
+		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
+		val.setConfig(new EnglishValidationConfig());
+		assertEquals(val.validate(" ").is_valid(),  true);
 	}
 	
 	@Test
 	void sanityDate1() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("32/02/2012").is_valid(), false);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("32/02/2012").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate2() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("31/20/2012").is_valid(), false);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("31/20/2012").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate3() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("31/20/19991").is_valid(), false);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("31/20/19991").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate4() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("2012/02/20").is_valid(), false);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("2012/02/20").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate5() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("28/02/2011").is_valid(), true);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("28/02/2011").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate6() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("31/01/2012").is_valid(), true);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("31/01/2012").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate7() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("30/04/2012").is_valid(), true);
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("30/04/2012").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate8() {
-		assertEquals(ValidatorFactory.getDateValidator().validate("Ahmed hamad").is_valid(), false);
-
+		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
+		val.setConfig(new DateValidationConfig());
+		assertEquals(val.validate("Ahmed hamad").is_valid(), false);
 	}
 	
 	@Test
 	void sanityLengthLessBad() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.LESS,1).validate("Ahmed hamad").is_valid(), false);
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(1,LengthOperator.LESS));
+		assertEquals(val.validate("Ahmed hamad").is_valid(), false);
 
 	}
 	
 	@Test
 	void sanityLengthLessGOOD() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.LESS,50).validate("Ahmed hamad").is_valid(), true);
-
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(50,LengthOperator.LESS));
+		assertEquals(val.validate("Ahmed hamad").is_valid(), true);
 	}
 	
 	@Test
 	void sanityLengthGreaterBad() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.GREATER,1).validate("a").is_valid(), false);
-
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(1,LengthOperator.GREATER));
+		assertEquals(val.validate("a").is_valid(), false);
 	}
 	
 	@Test
 	void sanityLengthGreaterGOOD() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.GREATER,5).validate("Ahmed hamad").is_valid(), true);
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(5,LengthOperator.GREATER));
+		assertEquals(val.validate("Ahmed hamad").is_valid(), true);
 
 	}
 	
 	@Test
 	void sanityLengthEqualGOOD() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.EQUAL,5).validate("Ahmed").is_valid(), true);
-
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(5,LengthOperator.EQUAL));
+		assertEquals(val.validate("Ahmed").is_valid(), true);
 	}
 	
 	@Test
 	void sanityLengthEqualBAD() {
-		assertEquals(ValidatorFactory.getLengthValidator(LengthOperator.EQUAL,7).validate("Ahmed").is_valid(), false);
-
+		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
+		val.setConfig(new LengthValidationConfig(7,LengthOperator.EQUAL));		
+		assertEquals(val.validate("Ahmed").is_valid(), false);
 	}
 	
 	@Test
 	void sanityNumericBad1() {
-		assertEquals(ValidatorFactory.getNumericValidator().validate("Ahmed").is_valid(), false);
-
+		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
+		val.setConfig(new NumericValidationConfig());
+		assertEquals(val.validate("Ahmed").is_valid(), false);
 	}
 	
 	@Test
 	void sanityNumericBad2() {
-		assertEquals(ValidatorFactory.getNumericValidator().validate("12123909124.1230412309423409").is_valid(), false);
+		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
+		val.setConfig(new NumericValidationConfig());
+		assertEquals(val.validate("12123909124.1230412309423409").is_valid(), false);
 
 	}
 	
 	@Test
 	void sanityNumericGood() {
-		assertEquals(ValidatorFactory.getNumericValidator().validate("121239091241230412309423409").is_valid(), true);
+		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
+		val.setConfig(new NumericValidationConfig());
+		assertEquals(val.validate("121239091241230412309423409").is_valid(), true);
 
 	}
 	
 	@Test
 	void sanityFloatGood1() {
-		assertEquals(ValidatorFactory.getFloatValidator().validate("1.12").is_valid(), true);
+		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
+		val.setConfig(new FloatValidationConfig());
+		assertEquals(val.validate("1.12").is_valid(), true);
 
 	}
 	
 	@Test
 	void sanityFloatGood2() {
-		assertEquals(ValidatorFactory.getFloatValidator().validate("112").is_valid(), true);
+		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
+		val.setConfig(new FloatValidationConfig());
+		assertEquals(val.validate("112").is_valid(), true);
 
 	}
 	
 	@Test
 	void sanityFloatBad() {
-		assertEquals(ValidatorFactory.getFloatValidator().validate("112..98").is_valid(), false);
+		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
+		val.setConfig(new FloatValidationConfig());
+		assertEquals(val.validate("112..98").is_valid(), false);
 	}
 	
 	@Test
 	void sanityRequiredBad1() {
-		assertEquals(ValidatorFactory.getRequiredValidator().validate("null").is_valid(), false);
+		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
+		val.setConfig(new RequiredValidationConfig());
+		assertEquals(val.validate("null").is_valid(), false);
 	}
 	
 	@Test
 	void sanityRequiredBad2() {
-		assertEquals(ValidatorFactory.getRequiredValidator().validate("Null").is_valid(), false);
+		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
+		val.setConfig(new RequiredValidationConfig());
+		assertEquals(val.validate("Null").is_valid(), false);
 	}
 	
 	@Test
 	void sanityRequiredBad3() {
-		assertEquals(ValidatorFactory.getRequiredValidator().validate("   ").is_valid(), false);
+		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
+		val.setConfig(new RequiredValidationConfig());
+		assertEquals(val.validate("   ").is_valid(), false);
 	}
 	
 	@Test
 	void sanityRequiredBad4() {
-		assertEquals(ValidatorFactory.getRequiredValidator().validate("{}").is_valid(), false);
+		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
+		val.setConfig(new RequiredValidationConfig());
+		assertEquals(val.validate("{}").is_valid(), false);
 	}
 	
 	@Test
 	void sanityRequiredGood() {
-		assertEquals(ValidatorFactory.getRequiredValidator().validate("{{id:\"123\"}}").is_valid(), true);
+		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
+		val.setConfig(new RequiredValidationConfig());
+		assertEquals(val.validate("{{id:\"123\"}}").is_valid(), true);
+	}
+	
+	@Test
+	void sanityComplex1() {
+		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
+		confgs.add(new RequiredValidationConfig());
+		confgs.add(new ArabicValidationConfig());
+		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER));
+		ComplexValidator val = new ComplexValidator();
+		ArrayList<ValidationResult> results = val.validate(" ", confgs);
+		assertFalse(results.get(0).is_valid());
+		assertTrue(results.get(1).is_valid());
+		assertFalse(results.get(2).is_valid());
+	}
+	
+	@Test
+	void sanityComplex2() {
+		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
+		confgs.add(new RequiredValidationConfig());
+		confgs.add(new ArabicValidationConfig());
+		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER));
+		ComplexValidator val = new ComplexValidator();
+		ArrayList<ValidationResult> results = val.validate("Ahmedkhaled", confgs);
+		assertTrue(results.get(0).is_valid());
+		assertFalse(results.get(1).is_valid());
+		assertTrue(results.get(2).is_valid());
+	}
+	
+	@Test
+	void sanityComplex3() {
+		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
+		confgs.add(new RequiredValidationConfig());
+		confgs.add(new ArabicValidationConfig());
+		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER));
+		ComplexValidator val = new ComplexValidator();
+		ArrayList<ValidationResult> results = val.validate("احمد حامد", confgs);
+		assertTrue(results.get(0).is_valid());
+		assertTrue(results.get(1).is_valid());
+		assertFalse(results.get(2).is_valid());
 	}
 
 }

@@ -55,4 +55,13 @@ public class ValidatorFactory {
 			floatValidator = new FloatValidator() ;
 		return floatValidator ;
 	}
+	
+	private static RequiredValidator requiredValidator;
+
+	public synchronized static RequiredValidator getRequiredValidator () {
+		if(requiredValidator == null)
+			requiredValidator = new RequiredValidator() ;
+		return requiredValidator ;
+	}
+	
 }

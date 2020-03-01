@@ -176,5 +176,30 @@ class ValidationsTests {
 	void sanityFloatBad() {
 		assertEquals(ValidatorFactory.getFloatValidator().validate("112..98").is_valid(), false);
 	}
+	
+	@Test
+	void sanityRequiredBad1() {
+		assertEquals(ValidatorFactory.getRequiredValidator().validate("null").is_valid(), false);
+	}
+	
+	@Test
+	void sanityRequiredBad2() {
+		assertEquals(ValidatorFactory.getRequiredValidator().validate("Null").is_valid(), false);
+	}
+	
+	@Test
+	void sanityRequiredBad3() {
+		assertEquals(ValidatorFactory.getRequiredValidator().validate("   ").is_valid(), false);
+	}
+	
+	@Test
+	void sanityRequiredBad4() {
+		assertEquals(ValidatorFactory.getRequiredValidator().validate("{}").is_valid(), false);
+	}
+	
+	@Test
+	void sanityRequiredGood() {
+		assertEquals(ValidatorFactory.getRequiredValidator().validate("{{id:\"123\"}}").is_valid(), true);
+	}
 
 }

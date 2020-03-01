@@ -1,6 +1,6 @@
 package com.ejada.validations.unittest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,6 @@ class ValidationsTests {
 	@Test
 	void sanityArabic1() {
 		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate("احمد").is_valid(), true);
-		
 	}
 	
 	@Test
@@ -28,7 +27,6 @@ class ValidationsTests {
 	@Test
 	void sanityArabic4() {
 		assertEquals(ValidatorFactory.getArabicLanguageValidator().validate(" ").is_valid(),  true);
-
 	}
 	
 	@Test
@@ -160,6 +158,23 @@ class ValidationsTests {
 	void sanityNumericGood() {
 		assertEquals(ValidatorFactory.getNumericValidator().validate("121239091241230412309423409").is_valid(), true);
 
+	}
+	
+	@Test
+	void sanityFloatGood1() {
+		assertEquals(ValidatorFactory.getFloatValidator().validate("1.12").is_valid(), true);
+
+	}
+	
+	@Test
+	void sanityFloatGood2() {
+		assertEquals(ValidatorFactory.getFloatValidator().validate("112").is_valid(), true);
+
+	}
+	
+	@Test
+	void sanityFloatBad() {
+		assertEquals(ValidatorFactory.getFloatValidator().validate("112..98").is_valid(), false);
 	}
 
 }

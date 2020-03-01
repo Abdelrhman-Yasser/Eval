@@ -12,15 +12,12 @@ public class ArabicLanguageResult implements ValidationResult {
 
 	@Override
 	public String get_error_message() {
-		// TODO Auto-generated method stub
 		return message;
 	}
 
 	@Override
 	public boolean is_valid() {
-		// TODO Auto-generated method stub
 		return valid;
 	}
-
 
 }

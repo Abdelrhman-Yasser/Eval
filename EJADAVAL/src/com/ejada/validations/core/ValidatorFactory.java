@@ -13,7 +13,7 @@ public class ValidatorFactory {
 	}
 	
 	private static EnglishLanguageValidator EnglishLanguageValidator;
-
+	
 	public synchronized static EnglishLanguageValidator getEnglishLanguageValidator () {
 		if(EnglishLanguageValidator == null)
 			EnglishLanguageValidator = new EnglishLanguageValidator() ;
@@ -46,5 +46,13 @@ public class ValidatorFactory {
 		if(numericValidator == null)
 			numericValidator = new NumericValidator() ;
 		return numericValidator ;
+	}
+	
+	private static FloatValidator floatValidator;
+
+	public synchronized static FloatValidator getFloatValidator () {
+		if(floatValidator == null)
+			floatValidator = new FloatValidator() ;
+		return floatValidator ;
 	}
 }

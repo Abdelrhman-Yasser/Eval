@@ -3,6 +3,8 @@ package com.ejada.validations.core;
 import java.text.SimpleDateFormat;
 
 import com.ejada.validations.complex.DateValidationConfig;
+import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.DateResult;
 import com.ejada.validations.result.ValidationResult;
 
@@ -23,15 +25,15 @@ public class DateValidator implements Validator{
 	@Override
 	public ValidationResult validate(String field, String fieldName) {
 		if(field == null)
-			return new DateResult(false,fieldName) ;
+			return new DateResult(false,fieldName,(Language)config.getParam(ParamType.Language).getValue()) ;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 		try {
 			sdf.parse(field) ;
-			return new DateResult(true,fieldName) ;
+			return new DateResult(true,fieldName,(Language)config.getParam(ParamType.Language).getValue()) ;
 		} catch (Exception e) {
-			return new DateResult(false,fieldName) ;
+			return new DateResult(false,fieldName,(Language)config.getParam(ParamType.Language).getValue()) ;
 		}
 	}
 

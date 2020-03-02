@@ -1,6 +1,8 @@
 package com.ejada.validations.core;
 
 import com.ejada.validations.complex.RequiredValidationConfig;
+import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.RequiredResult;
 import com.ejada.validations.result.ValidationResult;
 
@@ -26,7 +28,7 @@ public class RequiredValidator implements Validator {
 		valid &= field != "Null" ;
 		valid &= field != "{}" ;
 		valid &= !field.isBlank();
-		return new RequiredResult(valid,fieldName);
+		return new RequiredResult(valid,fieldName,(Language)config.getParam(ParamType.Language).getValue());
 	}
 
 	@Override

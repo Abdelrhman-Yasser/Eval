@@ -1,15 +1,20 @@
 package com.ejada.validations.complex;
 
+import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.params.ValidationParam;
 
 public class NumericValidationConfig implements ValidationConfig{
 	
 	private ValidationType type ;
+	private ValidationParam<Language> lang ;
+
 	
-	public NumericValidationConfig() {
+	public NumericValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.Number;
+		this.lang = new LangParam(lang);
 	}
 
 	@Override
@@ -19,7 +24,12 @@ public class NumericValidationConfig implements ValidationConfig{
 
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
-		return null ;
+		switch (type) {
+		case Language:
+			return this.lang;
+		default:
+			return null ;
+		}
 	}
 
 }

@@ -4,7 +4,7 @@ import com.ejada.validations.core.enums.LengthOperator;
 
 public class OperatorParam implements ValidationParam<LengthOperator> {
 
-	LengthOperator operator ;
+	private LengthOperator operator ;
 
 	public OperatorParam(LengthOperator operator) {
 		super();

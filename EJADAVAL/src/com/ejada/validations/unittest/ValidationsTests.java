@@ -2,8 +2,10 @@ package com.ejada.validations.unittest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,7 @@ import com.ejada.validations.complex.NumericValidationConfig;
 import com.ejada.validations.complex.RequiredValidationConfig;
 import com.ejada.validations.complex.ValidationConfig;
 import com.ejada.validations.complex.ValidationType;
+import com.ejada.validations.config.ConfigReader;
 import com.ejada.validations.core.ArabicLanguageValidator;
 import com.ejada.validations.core.DateValidator;
 import com.ejada.validations.core.EnglishLanguageValidator;
@@ -320,5 +323,18 @@ class ValidationsTests {
 		assertTrue(results.get(1).is_valid());
 		assertFalse(results.get(2).is_valid());
 	}
+	
+	@Test
+	void sanityConfig1() {
+		try {
+			assertEquals(
+				ConfigReader.getConfigReader().getProperty("com.ejada.translation.arabicError.Eng"),
+				"must contain only Arabic letters"
+			) ;
+		} catch (IOException e) {
+			assertEquals(1,0,"No File") ;
+		}
+	}
+
 
 }

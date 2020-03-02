@@ -21,8 +21,8 @@ public class NumericValidator implements Validator {
 	}
 
 	@Override
-	public ValidationResult validate(String field) {
-		return new NumericResult(field.matches("^[-+]?[0-9]+$"));
+	public ValidationResult validate(String field, String fieldName) {
+		return new NumericResult(field.matches("^[-+]?[0-9]+$"), fieldName);
 	}
 
 	@Override

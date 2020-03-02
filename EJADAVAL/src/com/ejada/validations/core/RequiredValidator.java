@@ -20,13 +20,13 @@ public class RequiredValidator implements Validator {
 	}
 
 	@Override
-	public ValidationResult validate(String field) {
+	public ValidationResult validate(String field, String fieldName) {
 		boolean valid = true ;
 		valid &= field != "null" ;
 		valid &= field != "Null" ;
 		valid &= field != "{}" ;
 		valid &= !field.isBlank();
-		return new RequiredResult(valid);
+		return new RequiredResult(valid,fieldName);
 	}
 
 	@Override

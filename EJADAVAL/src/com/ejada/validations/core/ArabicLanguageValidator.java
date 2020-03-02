@@ -19,8 +19,8 @@ public class ArabicLanguageValidator implements Validator{
 	}
 
 	@Override
-	public ValidationResult validate(String field){
-		return new ArabicLanguageResult(field.matches("^[ا-ي ]+$"));
+	public ValidationResult validate(String field, String feildName){
+		return new ArabicLanguageResult(field.matches("^[ا-ي ]+$"),feildName);
 	}
 
 	@Override

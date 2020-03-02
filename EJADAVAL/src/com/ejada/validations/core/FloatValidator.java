@@ -19,8 +19,8 @@ public class FloatValidator implements Validator {
 	}
 
 	@Override
-	public ValidationResult validate(String field) {
-		return new FloatResult(field.matches("^[-+]?[0-9]*\\.?[0-9]+$"));
+	public ValidationResult validate(String field, String fieldName) {
+		return new FloatResult(field.matches("^[-+]?[0-9]*\\.?[0-9]+$"),fieldName);
 	}
 
 	@Override

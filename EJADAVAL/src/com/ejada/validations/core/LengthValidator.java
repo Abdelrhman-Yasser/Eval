@@ -20,17 +20,17 @@ public class LengthValidator implements Validator{
 	}
 	
 	@Override
-	public ValidationResult validate(String field) {
+	public ValidationResult validate(String field, String fieldName) {
 		// TODO Auto-generated method stub
 		LengthOperator operator = (LengthOperator) this.config.getParam(ParamType.Operator).getValue() ;
 		Integer length = (Integer) this.config.getParam(ParamType.Length).getValue() ;
 		switch (operator) {
 		case LESS:
-			return new LengthResult(field.length() < length);
+			return new LengthResult(field.length() < length,fieldName);
 		case GREATER:
-			return new LengthResult(field.length() > length);
+			return new LengthResult(field.length() > length,fieldName);
 		case EQUAL:
-			return new LengthResult(field.length() == length);
+			return new LengthResult(field.length() == length,fieldName);
 		}
 		return null ;
 	}

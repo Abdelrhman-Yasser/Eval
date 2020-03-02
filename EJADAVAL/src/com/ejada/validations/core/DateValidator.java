@@ -21,17 +21,17 @@ public class DateValidator implements Validator{
 	}
 
 	@Override
-	public ValidationResult validate(String field) {
+	public ValidationResult validate(String field, String fieldName) {
 		if(field == null)
-			return new DateResult(false) ;
+			return new DateResult(false,fieldName) ;
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 		try {
 			sdf.parse(field) ;
-			return new DateResult(true) ;
+			return new DateResult(true,fieldName) ;
 		} catch (Exception e) {
-			return new DateResult(false) ;
+			return new DateResult(false,fieldName) ;
 		}
 	}
 

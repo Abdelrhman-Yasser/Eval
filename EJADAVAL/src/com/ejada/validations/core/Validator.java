@@ -4,7 +4,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public interface Validator {
 
-	ValidationResult validate(String field);
+	ValidationResult validate(String field, String FieldName);
 
 	public <T> void setConfig(T config);
 	

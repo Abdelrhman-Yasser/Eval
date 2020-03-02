@@ -8,12 +8,12 @@ import com.ejada.validations.result.ValidationResult;
 
 public class ComplexValidator {
 	
-	public ArrayList<ValidationResult> validate(String field, ArrayList<ValidationConfig> configs){
+	public ArrayList<ValidationResult> validate(String field, String fieldName, ArrayList<ValidationConfig> configs){
 		ArrayList<ValidationResult> results  = new ArrayList<ValidationResult>();
 		for(ValidationConfig conf : configs) {
 			Validator val = ValidatorFactory.getValidator(conf.getType()) ;
 			val.setConfig(conf);
-			results.add(val.validate(field));
+			results.add(val.validate(field,fieldName));
 		}
 		return results; 
 	}

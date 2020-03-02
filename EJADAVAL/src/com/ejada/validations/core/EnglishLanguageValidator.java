@@ -18,8 +18,8 @@ public class EnglishLanguageValidator implements Validator{
 	}
 	
 	@Override
-	public ValidationResult validate(String field){
-		return new EnglishLanguageResult(field.matches("^[a-zA-Z ]+$"));
+	public ValidationResult validate(String field, String fieldName){
+		return new EnglishLanguageResult(field.matches("^[a-zA-Z ]+$"), fieldName);
 	}
 
 	@Override

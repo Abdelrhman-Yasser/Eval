@@ -1,15 +1,19 @@
 package com.ejada.validations.complex;
 
+import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.params.ValidationParam;
 
 public class ArabicValidationConfig implements ValidationConfig{
 	
 	private ValidationType type ;
+	private ValidationParam<Language> lang ;
 	
-	public ArabicValidationConfig() {
+	public ArabicValidationConfig(Language lang) {
 		super();
-		this.type = ValidationType.ArabicLang;
+		this.type = ValidationType.ArabicLang ;
+		this.lang = new LangParam(lang);
 	}
 
 	@Override
@@ -19,7 +23,12 @@ public class ArabicValidationConfig implements ValidationConfig{
 
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
-		return null ;
+		switch (type) {
+		case Language:
+			return this.lang;
+		default:
+			return null ;
+		}
 	}
 
 }

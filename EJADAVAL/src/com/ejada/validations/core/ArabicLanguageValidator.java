@@ -1,6 +1,8 @@
 package com.ejada.validations.core;
 
 import com.ejada.validations.complex.ArabicValidationConfig;
+import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.ArabicLanguageResult;
 import com.ejada.validations.result.ValidationResult;
 
@@ -19,8 +21,8 @@ public class ArabicLanguageValidator implements Validator{
 	}
 
 	@Override
-	public ValidationResult validate(String field, String feildName){
-		return new ArabicLanguageResult(field.matches("^[ا-ي ]+$"),feildName);
+	public ValidationResult validate(String field, String fieldName){
+		return new ArabicLanguageResult(field.matches("^[ا-ي ]+$"),fieldName,(Language)config.getParam(ParamType.Language).getValue());
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 package com.ejada.validations.params;
 
 public enum ParamType {
-	Length, Operator
+	Length, Operator, Language
 }

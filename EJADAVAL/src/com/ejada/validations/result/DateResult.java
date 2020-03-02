@@ -1,5 +1,7 @@
 package com.ejada.validations.result;
 
+import com.ejada.validations.nationalization.Language;
+
 public class DateResult implements ValidationResult {
 
 	
@@ -7,11 +9,13 @@ public class DateResult implements ValidationResult {
 	private final String code = "" ;
 	private String fieldName ;
 	private boolean valid;
+	private Language lang;
 	
-	public DateResult(boolean valid, String fieldName) {
+	public DateResult(boolean valid, String fieldName, Language lang) {
 		super() ;
 		this.valid = valid ;
 		this.fieldName = fieldName ;
+		this.lang = lang ;
 	}
 
 	@Override

@@ -1,22 +1,26 @@
 package com.ejada.validations.config;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigReader {
 
 	private static final String configFile = "config.properties" ;
-	private static Properties prop ;
-
+	
 	private ConfigReader() throws IOException {} 
 	
-	public static synchronized Properties getConfigReader() throws IOException {
-		if(prop == null) {
-			prop = new Properties() ;
-			InputStream stream = ConfigReader.class.getClassLoader().getResourceAsStream(configFile) ;
-			prop.load(stream);
-		}
+	public static String read(String key) throws IOException {		
+		Properties prop = new Properties() ;
+		FileInputStream ip= new FileInputStream(configFile) ;
+		prop.load(ip);
+		return prop.getProperty(key) ;
+	}
+	
+	public static Properties getProp() throws IOException {
+		Properties prop = new Properties() ;
+		FileInputStream ip= new FileInputStream(configFile) ;
+		prop.load(ip);
 		return prop ;
 	}
 	

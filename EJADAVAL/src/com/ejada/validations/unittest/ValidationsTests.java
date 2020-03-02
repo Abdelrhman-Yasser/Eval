@@ -20,6 +20,7 @@ import com.ejada.validations.complex.RequiredValidationConfig;
 import com.ejada.validations.complex.ValidationConfig;
 import com.ejada.validations.complex.ValidationType;
 import com.ejada.validations.config.ConfigReader;
+import com.ejada.validations.config.ConfigWriter;
 import com.ejada.validations.core.ArabicLanguageValidator;
 import com.ejada.validations.core.DateValidator;
 import com.ejada.validations.core.EnglishLanguageValidator;
@@ -327,7 +328,7 @@ class ValidationsTests {
 	void sanityConfig1() {
 		try {
 			assertEquals(
-				ConfigReader.getConfigReader().getProperty("com.ejada.translation.arabicError.Eng"),
+				ConfigReader.read("com.ejada.translation.arabicError.Eng"),
 				"must contain only Arabic letters"
 			) ;
 		} catch (IOException e) {
@@ -335,5 +336,16 @@ class ValidationsTests {
 		}
 	}
 
-
+	@Test
+	void sanityConfigWriteRead() {
+		try {
+			ConfigWriter.write("test", "value");
+			assertEquals(
+				ConfigReader.read("test"),
+				"value"
+			) ;
+		} catch (IOException e) {
+			assertEquals(1,0,"No File") ;
+		}
+	}
 }

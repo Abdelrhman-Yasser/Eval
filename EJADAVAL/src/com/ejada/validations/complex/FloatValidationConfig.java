@@ -9,7 +9,7 @@ public class FloatValidationConfig implements ValidationConfig{
 	
 	public FloatValidationConfig() {
 		super();
-		this.type = ValidationType.Number;
+		this.type = ValidationType.Float;
 	}
 
 	@Override

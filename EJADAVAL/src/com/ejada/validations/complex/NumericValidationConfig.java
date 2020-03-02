@@ -9,7 +9,7 @@ public class NumericValidationConfig implements ValidationConfig{
 	
 	public NumericValidationConfig() {
 		super();
-		this.type = ValidationType.Float;
+		this.type = ValidationType.Number;
 	}
 
 	@Override

@@ -326,31 +326,6 @@ class ValidationsTests {
 		assertFalse(results.get(2).is_valid());
 	}
 	
-	@Test
-	void sanityConfig1() {
-		try {
-			assertEquals(
-				ConfigReader.read(ConfigReader.ENGLISH_TRANSLATION, Nationalization.ARABIC_ERROR_KEY),
-				"must contain only Arabic letters"
-			) ;
-		} catch (IOException e) {
-			assertEquals(1,0,"No File") ;
-		}
-	}
-
-	@Test
-	void sanityConfigWriteRead() {
-		try {
-			ConfigWriter.write(ConfigWriter.CONFIG_FILE,"test", "value");
-			assertEquals(
-				ConfigReader.read(ConfigReader.CONFIG_FILE,"test"),
-				"value"
-			) ;
-		} catch (IOException e) {
-			assertEquals(1,0,"No File") ;
-		}
-	}
-	
 	
 	@Test
 	void sanityNationalization1() throws IOException {

@@ -19,8 +19,6 @@ import com.ejada.validations.complex.NumericValidationConfig;
 import com.ejada.validations.complex.RequiredValidationConfig;
 import com.ejada.validations.complex.ValidationConfig;
 import com.ejada.validations.complex.ValidationType;
-import com.ejada.validations.config.ConfigReader;
-import com.ejada.validations.config.ConfigWriter;
 import com.ejada.validations.core.ArabicLanguageValidator;
 import com.ejada.validations.core.DateValidator;
 import com.ejada.validations.core.EnglishLanguageValidator;

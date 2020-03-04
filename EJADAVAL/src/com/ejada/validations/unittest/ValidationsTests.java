@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import com.ejada.validations.api.API;
 import com.ejada.validations.complex.ArabicValidationConfig;
 import com.ejada.validations.complex.ComplexValidator;
 import com.ejada.validations.complex.DateValidationConfig;
@@ -350,4 +351,11 @@ class ValidationsTests {
 		String msg = Nationalization.getTranslation("testChange",Language.Arabic);
 		assertEquals(msg,"قيمة") ;
 	}
+	
+	@Test
+	void sanityAPILength() {
+		API api = new API();
+		assertTrue(api.validateFieldLength("Asd", "Asd", "EQUAL", 3, "AR"));
+	}
+	
 }

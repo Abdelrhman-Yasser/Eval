@@ -1,0 +1,8 @@
+<appian-plugin name="Ejada Validations" key="com.ejada.validations">
+    <plugin-info>
+        <description>A group of expressions to validate generic data</description>
+        <vendor name="Ejada" url="http://www.ejada.com/Pages/default.aspx" />
+        <version>1.0.0</version>
+    </plugin-info>
+    <function key="validateLength" class="com.ejada.validations.api.API" />
+</appian-plugin>

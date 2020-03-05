@@ -8,7 +8,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class RequiredValidator implements Validator {
 
-	RequiredValidationConfig config;
+	private RequiredValidationConfig config;
 	
 	public RequiredValidator() {
 		super();

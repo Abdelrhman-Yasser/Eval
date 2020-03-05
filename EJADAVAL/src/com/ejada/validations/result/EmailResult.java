@@ -2,22 +2,22 @@ package com.ejada.validations.result;
 
 import com.ejada.validations.nationalization.Language;
 
-public class DateResult implements ValidationResult {
+public class EmailResult implements ValidationResult{
 
 	private final String message = "" ;
 	private final String code = "" ;
 	private String fieldName ;
 	private boolean valid;
-	
-	public DateResult(boolean valid, String fieldName, Language lang) {
-		super() ;
+
+	public EmailResult(boolean valid, String fieldName, Language lang) {
+		super();
 		this.valid = valid ;
 		this.fieldName = fieldName ;
 	}
 
 	@Override
 	public String get_error_message() {
-		return this.fieldName + " " + message;
+		return fieldName + " " + message;
 	}
 
 	@Override
@@ -25,11 +25,10 @@ public class DateResult implements ValidationResult {
 		return valid;
 	}
 
+
 	@Override
 	public String get_error_code() {
-		return this.code;
+		return code;
 	}
-	
-	
 
 }

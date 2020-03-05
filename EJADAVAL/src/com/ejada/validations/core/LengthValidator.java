@@ -9,7 +9,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class LengthValidator implements Validator{
 	
-	LengthValidationConfig config ;
+	private LengthValidationConfig config ;
 	
 	public LengthValidator() {
 		super();

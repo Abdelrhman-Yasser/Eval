@@ -8,7 +8,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class ArabicLanguageValidator implements Validator{
 
-	ArabicValidationConfig config;
+	private ArabicValidationConfig config;
 	
 	public ArabicLanguageValidator() {
 		super();

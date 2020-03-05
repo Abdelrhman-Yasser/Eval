@@ -8,7 +8,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class EnglishLanguageValidator implements Validator{
 	
-	EnglishValidationConfig config ; 
+	private EnglishValidationConfig config ; 
 	
 	public EnglishLanguageValidator() {
 		super();

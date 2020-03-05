@@ -8,9 +8,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class NumericValidator implements Validator {
 
-	NumericValidationConfig config ;
-	
-	
+	private NumericValidationConfig config ;
 	
 	public NumericValidator() {
 		super();

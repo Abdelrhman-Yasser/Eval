@@ -13,6 +13,7 @@ import com.ejada.validations.api.API;
 import com.ejada.validations.complex.ArabicValidationConfig;
 import com.ejada.validations.complex.ComplexValidator;
 import com.ejada.validations.complex.DateValidationConfig;
+import com.ejada.validations.complex.EmailValidationConfig;
 import com.ejada.validations.complex.EnglishValidationConfig;
 import com.ejada.validations.complex.FloatValidationConfig;
 import com.ejada.validations.complex.LengthValidationConfig;
@@ -22,6 +23,7 @@ import com.ejada.validations.complex.ValidationConfig;
 import com.ejada.validations.complex.ValidationType;
 import com.ejada.validations.core.ArabicLanguageValidator;
 import com.ejada.validations.core.DateValidator;
+import com.ejada.validations.core.EmailValidator;
 import com.ejada.validations.core.EnglishLanguageValidator;
 import com.ejada.validations.core.FloatValidator;
 import com.ejada.validations.core.LengthValidator;
@@ -108,57 +110,113 @@ class ValidationsTests {
 	@Test
 	void sanityDate1() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("32/02/2012","test").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate2() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("31/20/2012","test").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate3() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("31/20/19991","test").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate4() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("2012/02/20","test").is_valid(), false);
 	}
 	
 	@Test
 	void sanityDate5() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("28/02/2011","test").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate6() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("31/01/2012","test").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate7() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("30/04/2012","test").is_valid(), true);
 	}
 	
 	@Test
 	void sanityDate8() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
-		val.setConfig(new DateValidationConfig(Language.English));
+		val.setConfig(new DateValidationConfig("dd/MM/yyyy",Language.English));
 		assertEquals(val.validate("Ahmed hamad","test").is_valid(), false);
+	}
+	
+	@Test
+	void sanityEmail1() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user@domain.com","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail2() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user@domain.co.in","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail3() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user1@domain.com","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail4() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user.name@domain.com","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail5() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user#@domain.co.in","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail6() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertTrue(val.validate("user@domaincom","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail7() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertFalse(val.validate("user#domain.com","test").is_valid());
+	}
+	
+	@Test
+	void sanityEmail8() {
+		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
+		val.setConfig(new EmailValidationConfig(Language.English));
+		assertFalse(val.validate("@yahoo.com","test").is_valid());
 	}
 	
 	@Test

@@ -8,7 +8,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class FloatValidator implements Validator {
 
-	FloatValidationConfig config ;
+	private FloatValidationConfig config ;
 	
 	public FloatValidator() {
 		super();

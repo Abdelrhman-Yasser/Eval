@@ -60,6 +60,14 @@ public class ValidatorFactory {
 		return requiredValidator ;
 	}
 	
+	private static EmailValidator emailValidator;
+	
+	private synchronized static EmailValidator getEmailValidator () {
+		if(emailValidator == null)
+			emailValidator = new EmailValidator() ;
+		return emailValidator ;
+	}
+	
 	public static Validator getValidator(ValidationType type) {
 		switch (type) {
 			case ArabicLang:
@@ -76,6 +84,8 @@ public class ValidatorFactory {
 				return getNumericValidator();
 			case Required:
 				return getRequiredValidator();
+			case Email:
+				return getEmailValidator();
 		}
 		return null;
 	}

@@ -10,7 +10,7 @@ import com.ejada.validations.result.ValidationResult;
 
 public class DateValidator implements Validator{
 
-	DateValidationConfig config;
+	private DateValidationConfig config;
 	
 	public DateValidator() {
 		super();
@@ -26,8 +26,10 @@ public class DateValidator implements Validator{
 	public ValidationResult validate(String field, String fieldName) {
 		if(field == null)
 			return new DateResult(false,fieldName,(Language)config.getParam(ParamType.Language).getValue()) ;
+
+		String dateFormat = (String)this.config.getParam(ParamType.DateFormat).getValue() ;
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setLenient(false);
 		try {
 			sdf.parse(field) ;

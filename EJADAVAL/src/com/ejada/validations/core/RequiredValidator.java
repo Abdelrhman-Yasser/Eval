@@ -27,7 +27,8 @@ public class RequiredValidator implements Validator {
 		valid &= field != "null" ;
 		valid &= field != "Null" ;
 		valid &= field != "{}" ;
-		valid &= !field.isBlank();
+		valid &= !field.trim().isEmpty();
+		valid &= field != null ;
 		return new RequiredResult(valid,fieldName,(Language)config.getParam(ParamType.Language).getValue());
 	}
 

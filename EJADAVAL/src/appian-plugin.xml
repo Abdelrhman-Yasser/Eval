@@ -4,5 +4,5 @@
         <vendor name="Ejada" url="http://www.ejada.com/Pages/default.aspx" />
         <version>1.0.0</version>
     </plugin-info>
-    <function key="validateLength" class="com.ejada.validations.api.API" />
+    <function key="ValidationAPI" class="com.ejada.validations.api.API" />
 </appian-plugin>

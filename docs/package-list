@@ -1,0 +1,10 @@
+com.ejada.validations.api
+com.ejada.validations.complex
+com.ejada.validations.config
+com.ejada.validations.core
+com.ejada.validations.core.enums
+com.ejada.validations.exceptions
+com.ejada.validations.nationalization
+com.ejada.validations.params
+com.ejada.validations.result
+com.ejada.validations.unittest

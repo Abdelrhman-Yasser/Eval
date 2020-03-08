@@ -16,6 +16,7 @@ This is Appian plugin source code which handles validations to text fields in Ap
   2. Add JAR to <Appian Home>/_admin/config/plugins
   3. Restart Appian.
   4. Enter Admin Console and mark allow plugin.
+  
   Now you will be able to use all functionalities listed in Text Functions Appian category
 
 # Documentation :

@@ -10,3 +10,15 @@ This is Appian plugin source code which handles validations to text fields in Ap
   6. Email validation
   7. Length with custom operators (<,>,=)
   8. Required validation
+
+# Deploying to Appian :
+  1. Extract source code to Jar.
+  2. Add JAR to <Appian Home>/_admin/config/plugins
+  3. Restart Appian.
+  4. Enter Admin Console and mark allow plugin.
+  Now you will be able to use all functionalities listed in Text Functions Appian category
+
+# Documentation :
+
+  Kindly find java documentation of the library [Here](https://abdelrhman-yasser.github.io/Ejada-Validations/)  
+  

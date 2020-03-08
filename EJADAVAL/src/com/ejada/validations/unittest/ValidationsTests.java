@@ -413,7 +413,7 @@ class ValidationsTests {
 	@Test
 	void sanityAPILength() throws Exception {
 		API api = new API();
-		assertTrue(api.validateFieldLength("Asd", "Asd", "EQUAL", 3));
+		assertTrue(api.validateFieldLength("Asd", "EQUAL", 3));
 	}
 	
 }

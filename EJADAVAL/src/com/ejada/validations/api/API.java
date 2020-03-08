@@ -29,7 +29,6 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldLength(
-			@Parameter String fieldName,
 			@Parameter String field,
 			@Parameter String operator,
 			@Parameter Integer length) throws WrongOperatorException{
@@ -43,7 +42,7 @@ public class API {
 						LengthOperator.getByCode(operator),
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -51,14 +50,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldEnglish(
-			@Parameter String fieldName,
 			@Parameter String field){
 		
 		ValidationResult result = new EnglishLanguageValidator(
 				new EnglishValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -66,14 +64,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldArabic(
-			@Parameter String fieldName,
 			@Parameter String field) {
 		
 		ValidationResult result = new ArabicLanguageValidator(
 				new ArabicValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -81,7 +78,6 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldDate(
-			@Parameter String fieldName,
 			@Parameter String field,
 			@Parameter String dateFormat){
 		
@@ -90,7 +86,7 @@ public class API {
 						dateFormat,
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -98,14 +94,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldFloat(
-			@Parameter String fieldName,
 			@Parameter String field){
 		
 		ValidationResult result = new FloatValidator(
 				new FloatValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -113,14 +108,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldNumeric(
-			@Parameter String fieldName,
 			@Parameter String field){
 		
 		ValidationResult result = new NumericValidator(
 				new NumericValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -128,14 +122,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldRequired(
-			@Parameter String fieldName,
 			@Parameter String field){
 		
 		ValidationResult result = new RequiredValidator(
 				new RequiredValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}
@@ -143,14 +136,13 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldEmail(
-			@Parameter String fieldName,
 			@Parameter String field){
 		
 		ValidationResult result = new EmailValidator(
 				new EmailValidationConfig(
 						Language.getByCode(Language.English.getValue())
 						)
-				).validate(field, fieldName);
+				).validate(field, "");
 		
 		return result.is_valid() ;	
 	}

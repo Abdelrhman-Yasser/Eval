@@ -13,7 +13,7 @@ This is Appian plugin source code which handles validations to text fields in Ap
 
 # Deploying to Appian :
   1. Download Jar file from [here](https://github.com/Abdelrhman-Yasser/Ejada-Validations/releases).
-  2. Add JAR to '<Appian Home>'/_admin/config/plugins
+  2. Add JAR to \<Appian Home\>/_admin/config/plugins
   3. Restart Appian.
   4. Enter Admin Console and mark allow plugin.
   

@@ -6,21 +6,42 @@ import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.RequiredResult;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class RequiredValidator.
+ */
 public class RequiredValidator implements Validator {
 
+	/**
+	 * The config.
+	 */
 	private RequiredValidationConfig config;
 	
+	/**
+	 * Instantiates a new required validator.
+	 */
 	public RequiredValidator() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new required validator.
+	 *
+	 * @param config the config
+	 */
 	public RequiredValidator(RequiredValidationConfig config) {
 		super();
 		this.config = config ;
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Validate.
+	 *
+	 * @param field the field
+	 * @param fieldName the field name
+	 * @return the validation result
+	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) {
 		boolean valid = true ;
@@ -32,6 +53,12 @@ public class RequiredValidator implements Validator {
 		return new RequiredResult(valid,fieldName,(Language)config.getParam(ParamType.Language).getValue());
 	}
 
+	/**
+	 * Sets the config.
+	 *
+	 * @param T the generic type
+	 * @param config the new config
+	 */
 	@Override
 	public <T> void setConfig(T config) {
 		// TODO Auto-generated method stub

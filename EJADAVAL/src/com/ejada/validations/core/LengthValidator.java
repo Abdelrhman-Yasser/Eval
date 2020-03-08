@@ -7,19 +7,40 @@ import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.LengthResult;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class LengthValidator.
+ */
 public class LengthValidator implements Validator{
 	
+	/**
+	 * The config.
+	 */
 	private LengthValidationConfig config ;
 	
+	/**
+	 * Instantiates a new length validator.
+	 */
 	public LengthValidator() {
 		super();
 	}
 
+	/**
+	 * Instantiates a new length validator.
+	 *
+	 * @param config the config
+	 */
 	public LengthValidator(LengthValidationConfig config) {
 		super();
 		this.config = config;
 	}
 	
+	/**
+	 * Validate.
+	 *
+	 * @param field the field
+	 * @param fieldName the field name
+	 * @return the validation result
+	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) {
 		// TODO Auto-generated method stub
@@ -36,6 +57,12 @@ public class LengthValidator implements Validator{
 		return null ;
 	}
 
+	/**
+	 * Sets the config.
+	 *
+	 * @param T the generic type
+	 * @param config the new config
+	 */
 	@Override
 	public <T> void setConfig(T config) {
 		// TODO Auto-generated method stub

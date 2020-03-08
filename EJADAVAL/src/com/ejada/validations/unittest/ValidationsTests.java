@@ -35,8 +35,14 @@ import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.nationalization.Nationalization;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class ValidationsTests.
+ */
 class ValidationsTests {
 	
+	/**
+	 * Sanity arabic 1.
+	 */
 	@Test
 	void sanityArabic1() {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
@@ -44,6 +50,9 @@ class ValidationsTests {
 		assertEquals(val.validate("احمد","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity arabic 2.
+	 */
 	@Test
 	void sanityArabic2() {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
@@ -51,6 +60,9 @@ class ValidationsTests {
 		assertEquals(val.validate("اح1123مد","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity arabic 3.
+	 */
 	@Test
 	void sanityArabic3() {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
@@ -58,6 +70,9 @@ class ValidationsTests {
 		assertEquals(val.validate("احمد  hamad","test").is_valid(),  false);
 	}
 	
+	/**
+	 * Sanity arabic 4.
+	 */
 	@Test
 	void sanityArabic4() {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory.getValidator(ValidationType.ArabicLang) ;
@@ -65,6 +80,9 @@ class ValidationsTests {
 		assertEquals(val.validate(" ","test").is_valid(),  true);
 	}
 	
+	/**
+	 * Sanity english 1.
+	 */
 	@Test
 	void sanityEnglish1() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -72,6 +90,9 @@ class ValidationsTests {
 		assertEquals(val.validate("اح1123مد","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity english 2.
+	 */
 	@Test
 	void sanityEnglish2() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -79,6 +100,9 @@ class ValidationsTests {
 		assertEquals(val.validate("احمد","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity english 3.
+	 */
 	@Test
 	void sanityEnglish3() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -86,6 +110,9 @@ class ValidationsTests {
 		assertEquals(val.validate("اح1123مد","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity english 4.
+	 */
 	@Test
 	void sanityEnglish4() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -93,6 +120,9 @@ class ValidationsTests {
 		assertEquals(val.validate("احمد  حامد","test").is_valid(),  false);
 	}
 	
+	/**
+	 * Sanity english 5.
+	 */
 	@Test
 	void sanityEnglish5() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -100,6 +130,9 @@ class ValidationsTests {
 		assertEquals(val.validate("احمد  hamad","test").is_valid(),  false);
 	}
 	
+	/**
+	 * Sanity english 6.
+	 */
 	@Test
 	void sanityEnglish6() {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory.getValidator(ValidationType.EnglishLang) ;
@@ -107,6 +140,9 @@ class ValidationsTests {
 		assertEquals(val.validate(" ","test").is_valid(),  true);
 	}
 	
+	/**
+	 * Sanity date 1.
+	 */
 	@Test
 	void sanityDate1() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -114,6 +150,9 @@ class ValidationsTests {
 		assertEquals(val.validate("32/02/2012","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity date 2.
+	 */
 	@Test
 	void sanityDate2() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -121,6 +160,9 @@ class ValidationsTests {
 		assertEquals(val.validate("31/20/2012","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity date 3.
+	 */
 	@Test
 	void sanityDate3() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -128,6 +170,9 @@ class ValidationsTests {
 		assertEquals(val.validate("31/20/19991","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity date 4.
+	 */
 	@Test
 	void sanityDate4() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -135,6 +180,9 @@ class ValidationsTests {
 		assertEquals(val.validate("2012/02/20","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity date 5.
+	 */
 	@Test
 	void sanityDate5() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -142,6 +190,9 @@ class ValidationsTests {
 		assertEquals(val.validate("28/02/2011","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity date 6.
+	 */
 	@Test
 	void sanityDate6() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -149,6 +200,9 @@ class ValidationsTests {
 		assertEquals(val.validate("31/01/2012","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity date 7.
+	 */
 	@Test
 	void sanityDate7() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -156,6 +210,9 @@ class ValidationsTests {
 		assertEquals(val.validate("30/04/2012","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity date 8.
+	 */
 	@Test
 	void sanityDate8() {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date) ;
@@ -163,6 +220,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Ahmed hamad","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity email 1.
+	 */
 	@Test
 	void sanityEmail1() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -170,6 +230,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user@domain.com","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 2.
+	 */
 	@Test
 	void sanityEmail2() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -177,6 +240,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user@domain.co.in","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 3.
+	 */
 	@Test
 	void sanityEmail3() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -184,6 +250,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user1@domain.com","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 4.
+	 */
 	@Test
 	void sanityEmail4() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -191,6 +260,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user.name@domain.com","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 5.
+	 */
 	@Test
 	void sanityEmail5() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -198,6 +270,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user#@domain.co.in","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 6.
+	 */
 	@Test
 	void sanityEmail6() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -205,6 +280,9 @@ class ValidationsTests {
 		assertTrue(val.validate("user@domaincom","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 7.
+	 */
 	@Test
 	void sanityEmail7() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -212,6 +290,9 @@ class ValidationsTests {
 		assertFalse(val.validate("user#domain.com","test").is_valid());
 	}
 	
+	/**
+	 * Sanity email 8.
+	 */
 	@Test
 	void sanityEmail8() {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email) ;
@@ -219,6 +300,9 @@ class ValidationsTests {
 		assertFalse(val.validate("@yahoo.com","test").is_valid());
 	}
 	
+	/**
+	 * Sanity length less bad.
+	 */
 	@Test
 	void sanityLengthLessBad() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -227,6 +311,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity length less GOOD.
+	 */
 	@Test
 	void sanityLengthLessGOOD() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -234,6 +321,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Ahmed hamad","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity length greater bad.
+	 */
 	@Test
 	void sanityLengthGreaterBad() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -241,6 +331,9 @@ class ValidationsTests {
 		assertEquals(val.validate("a","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity length greater GOOD.
+	 */
 	@Test
 	void sanityLengthGreaterGOOD() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -249,6 +342,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity length equal GOOD.
+	 */
 	@Test
 	void sanityLengthEqualGOOD() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -256,6 +352,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Ahmed","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity length equal BAD.
+	 */
 	@Test
 	void sanityLengthEqualBAD() {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length) ;
@@ -263,6 +362,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Ahmed","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity numeric bad 1.
+	 */
 	@Test
 	void sanityNumericBad1() {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
@@ -270,6 +372,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Ahmed","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity numeric bad 2.
+	 */
 	@Test
 	void sanityNumericBad2() {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
@@ -278,6 +383,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity numeric good.
+	 */
 	@Test
 	void sanityNumericGood() {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number) ;
@@ -286,6 +394,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity float good 1.
+	 */
 	@Test
 	void sanityFloatGood1() {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
@@ -294,6 +405,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity float good 2.
+	 */
 	@Test
 	void sanityFloatGood2() {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
@@ -302,6 +416,9 @@ class ValidationsTests {
 
 	}
 	
+	/**
+	 * Sanity float bad.
+	 */
 	@Test
 	void sanityFloatBad() {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float) ;
@@ -309,6 +426,9 @@ class ValidationsTests {
 		assertEquals(val.validate("112..98","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity required bad 1.
+	 */
 	@Test
 	void sanityRequiredBad1() {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
@@ -316,6 +436,9 @@ class ValidationsTests {
 		assertEquals(val.validate("null","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity required bad 2.
+	 */
 	@Test
 	void sanityRequiredBad2() {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
@@ -323,6 +446,9 @@ class ValidationsTests {
 		assertEquals(val.validate("Null","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity required bad 3.
+	 */
 	@Test
 	void sanityRequiredBad3() {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
@@ -330,6 +456,9 @@ class ValidationsTests {
 		assertEquals(val.validate("   ","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity required bad 4.
+	 */
 	@Test
 	void sanityRequiredBad4() {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
@@ -337,6 +466,9 @@ class ValidationsTests {
 		assertEquals(val.validate("{}","test").is_valid(), false);
 	}
 	
+	/**
+	 * Sanity required good.
+	 */
 	@Test
 	void sanityRequiredGood() {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required) ;
@@ -344,6 +476,9 @@ class ValidationsTests {
 		assertEquals(val.validate("{{id:\"123\"}}","test").is_valid(), true);
 	}
 	
+	/**
+	 * Sanity complex 1.
+	 */
 	@Test
 	void sanityComplex1() {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
@@ -357,6 +492,9 @@ class ValidationsTests {
 		assertFalse(results.get(2).is_valid());
 	}
 	
+	/**
+	 * Sanity complex 2.
+	 */
 	@Test
 	void sanityComplex2() {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
@@ -370,6 +508,9 @@ class ValidationsTests {
 		assertTrue(results.get(2).is_valid());
 	}
 	
+	/**
+	 * Sanity complex 3.
+	 */
 	@Test
 	void sanityComplex3() {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>() ;
@@ -384,18 +525,33 @@ class ValidationsTests {
 	}
 	
 	
+	/**
+	 * Sanity nationalization 1.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@Test
 	void sanityNationalization1() throws IOException {
 		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY, Language.English);
 		assertEquals(msg,"must contain only English letters") ;
 	}
 	
+	/**
+	 * Sanity nationalization 2.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@Test
 	void sanityNationalization2() throws IOException {
 		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY,Language.Arabic);
 		assertEquals(msg,"ليس قيمة باللغة الانجليزية") ;
 	}
 	
+	/**
+	 * Sanity nationalization change english.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@Test
 	void sanityNationalizationChangeEnglish() throws IOException {
 		Nationalization.setEnglishTranslation("testChange", "value");
@@ -403,6 +559,11 @@ class ValidationsTests {
 		assertEquals(msg,"value") ;
 	}
 	
+	/**
+	 * Sanity nationalization change arabic.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@Test
 	void sanityNationalizationChangeArabic() throws IOException {
 		Nationalization.setArabicTranslation("testChange", "قيمة");
@@ -410,6 +571,11 @@ class ValidationsTests {
 		assertEquals(msg,"قيمة") ;
 	}
 	
+	/**
+	 * Sanity API length.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Test
 	void sanityAPILength() throws Exception {
 		API api = new API();

@@ -8,13 +8,38 @@ import com.ejada.validations.params.OperatorParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.params.ValidationParam;
 
+/**
+ * The Class LengthValidationConfig.
+ */
 public class LengthValidationConfig implements ValidationConfig{
 
+	/**
+	 * The length.
+	 */
 	private ValidationParam<Integer> length ;
+	
+	/**
+	 * The operator.
+	 */
 	private ValidationParam<LengthOperator> operator ;
+	
+	/**
+	 * The lang.
+	 */
 	private ValidationParam<Language> lang ;
+	
+	/**
+	 * The type.
+	 */
 	private ValidationType type ;
 	
+	/**
+	 * Instantiates a new length validation config.
+	 *
+	 * @param length the length
+	 * @param operator the operator
+	 * @param lang the lang
+	 */
 	public LengthValidationConfig(int length, LengthOperator operator, Language lang) {
 		super();
 		this.length = new LengthParam(length);
@@ -23,11 +48,22 @@ public class LengthValidationConfig implements ValidationConfig{
 		this.type = ValidationType.Length;
 	}
 
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
 	@Override
 	public ValidationType getType() {
 		return type;
 	}
 
+	/**
+	 * Gets the param.
+	 *
+	 * @param type the type
+	 * @return the param
+	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
 		switch (type) {

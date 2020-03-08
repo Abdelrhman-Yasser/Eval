@@ -24,8 +24,20 @@ import com.ejada.validations.exceptions.WrongOperatorException;
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class API.
+ */
 public class API {
 
+	/**
+	 * This function validate length of a given text field.
+	 *
+	 * @param Field value to be validated
+	 * @param Operator type must be ("LESS THAN","GREATER THAN","EQUAL")
+	 * @param Length that will be used in comparing
+	 * @return Validation result
+	 * @throws WrongOperatorException the wrong operator exception
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldLength(
@@ -47,6 +59,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given text field is in English form.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldEnglish(
@@ -61,6 +79,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given text field is in Arabic form.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldArabic(
@@ -75,6 +99,13 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given field is in date form.
+	 *
+	 * @param Field value to be validated
+	 * @param Date format to validate on eg.(dd/MM/yyyy) all formats can be found in Appian datetext documentation
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldDate(
@@ -91,6 +122,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given text field is a decimal number.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldFloat(
@@ -105,6 +142,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 *This function validate a given text field is a whole number.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldNumeric(
@@ -119,6 +162,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given text field is not empty or null.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldRequired(
@@ -133,6 +182,12 @@ public class API {
 		return result.is_valid() ;	
 	}
 	
+	/**
+	 * This function validate a given text field is in valid email form.
+	 *
+	 * @param Field value to be validated
+	 * @return Validation result
+	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldEmail(

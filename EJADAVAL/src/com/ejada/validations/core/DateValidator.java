@@ -8,20 +8,41 @@ import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.DateResult;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class DateValidator.
+ */
 public class DateValidator implements Validator{
 
+	/**
+	 * The config.
+	 */
 	private DateValidationConfig config;
 	
+	/**
+	 * Instantiates a new date validator.
+	 */
 	public DateValidator() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Instantiates a new date validator.
+	 *
+	 * @param config the config
+	 */
 	public DateValidator(DateValidationConfig config) {
 		super();
 		this.config = config;
 	}
 
+	/**
+	 * Validate.
+	 *
+	 * @param field the field
+	 * @param fieldName the field name
+	 * @return the validation result
+	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) {
 		if(field == null)
@@ -39,6 +60,12 @@ public class DateValidator implements Validator{
 		}
 	}
 
+	/**
+	 * Sets the config.
+	 *
+	 * @param T the generic type
+	 * @param config the new config
+	 */
 	@Override
 	public <T> void setConfig(T config) {
 		// TODO Auto-generated method stub

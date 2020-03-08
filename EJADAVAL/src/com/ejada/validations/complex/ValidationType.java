@@ -1,5 +1,40 @@
 package com.ejada.validations.complex;
 
+/**
+ * The Enum ValidationType.
+ */
 public enum ValidationType {
-	Required, Number, Float, Length, ArabicLang, EnglishLang, Date, Email
+	
+	/**
+	 * The Required.
+	 */
+	Required, 
+ /**
+  * The Number.
+  */
+ Number, 
+ /**
+  * The Float.
+  */
+ Float, 
+ /**
+  * The Length.
+  */
+ Length, 
+ /**
+  * The Arabic lang.
+  */
+ ArabicLang, 
+ /**
+  * The English lang.
+  */
+ EnglishLang, 
+ /**
+  * The Date.
+  */
+ Date, 
+ /**
+  * The Email.
+  */
+ Email
 }

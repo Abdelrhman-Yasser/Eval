@@ -1,5 +1,8 @@
 package com.ejada.validations.complex;
 
+import javax.json.JsonObject;
+
+import com.ejada.validations.exceptions.MissingParameterException;
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.params.DateFormatParam;
 import com.ejada.validations.params.LangParam;
@@ -9,34 +12,54 @@ import com.ejada.validations.params.ValidationParam;
 /**
  * The Class DateValidationConfig.
  */
-public class DateValidationConfig implements ValidationConfig{
-	
+public class DateValidationConfig implements ValidationConfig {
+
 	/**
 	 * The type.
 	 */
-	private ValidationType type ;
-	
+	private ValidationType type;
+
 	/**
 	 * The lang.
 	 */
-	private LangParam lang ;
-	
+	private LangParam lang;
+
 	/**
 	 * The date format.
 	 */
-	private DateFormatParam dateFormat ;
-	
+	private DateFormatParam dateFormat;
+
 	/**
 	 * Instantiates a new date validation config.
 	 *
 	 * @param dateFormat the date format
-	 * @param lang the lang
+	 * @param lang       the lang
 	 */
-	public DateValidationConfig(String dateFormat ,Language lang) {
+	public DateValidationConfig(String dateFormat, Language lang) {
 		super();
 		this.type = ValidationType.Date;
 		this.lang = new LangParam(lang);
-		this.dateFormat = new DateFormatParam(dateFormat) ;
+		this.dateFormat = new DateFormatParam(dateFormat);
+	}
+
+	/**
+	 * Instantiates a new date validation config.
+	 *
+	 * @param params the params
+	 * @param lang   the lang
+	 * @throws MissingParameterException the missing parameter exception
+	 */
+	public DateValidationConfig(JsonObject params, Language lang) throws MissingParameterException {
+		super();
+		this.type = ValidationType.Date;
+		this.lang = new LangParam(lang);
+
+		try {
+			this.dateFormat = new DateFormatParam(params.getString(ParamType.DateFormat.toString()));
+		} catch (Exception e) {
+			throw new MissingParameterException(this.type + "-" + ParamType.DateFormat);
+		}
+
 	}
 
 	/**
@@ -63,7 +86,7 @@ public class DateValidationConfig implements ValidationConfig{
 		case DateFormat:
 			return this.dateFormat;
 		default:
-			return null ;
+			return null;
 		}
 	}
 

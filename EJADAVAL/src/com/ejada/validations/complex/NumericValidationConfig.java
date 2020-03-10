@@ -71,4 +71,13 @@ public class NumericValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != NumericValidationConfig.class)
+			return false;
+		NumericValidationConfig other = ((NumericValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

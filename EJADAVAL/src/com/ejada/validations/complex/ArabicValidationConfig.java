@@ -71,4 +71,12 @@ public class ArabicValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != ArabicValidationConfig.class)
+			return false;
+		return ((ArabicValidationConfig) obj).getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

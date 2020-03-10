@@ -71,4 +71,13 @@ public class EmailValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != EmailValidationConfig.class)
+			return false;
+		EmailValidationConfig other = ((EmailValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

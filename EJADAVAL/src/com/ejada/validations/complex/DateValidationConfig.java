@@ -90,4 +90,14 @@ public class DateValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != DateValidationConfig.class)
+			return false;
+		DateValidationConfig other = ((DateValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue()
+				&& other.getParam(ParamType.DateFormat).getValue().equals(this.dateFormat.getValue());
+	}
+
 }

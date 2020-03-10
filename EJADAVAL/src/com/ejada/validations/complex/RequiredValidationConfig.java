@@ -71,4 +71,13 @@ public class RequiredValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != RequiredValidationConfig.class)
+			return false;
+		RequiredValidationConfig other = ((RequiredValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

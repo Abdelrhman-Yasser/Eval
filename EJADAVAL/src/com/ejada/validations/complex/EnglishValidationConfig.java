@@ -71,4 +71,13 @@ public class EnglishValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != EnglishValidationConfig.class)
+			return false;
+		EnglishValidationConfig other = ((EnglishValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

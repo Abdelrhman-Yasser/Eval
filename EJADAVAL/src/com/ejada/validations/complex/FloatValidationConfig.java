@@ -71,4 +71,13 @@ public class FloatValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != FloatValidationConfig.class)
+			return false;
+		FloatValidationConfig other = ((FloatValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+	}
+
 }

@@ -117,4 +117,15 @@ public class LengthValidationConfig implements ValidationConfig {
 		}
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj.getClass() != LengthValidationConfig.class)
+			return false;
+		LengthValidationConfig other = ((LengthValidationConfig) obj);
+		return other.getParam(ParamType.Language).getValue() == this.lang.getValue()
+				&& other.getParam(ParamType.Operator).getValue() == this.operator.getValue()
+				&& other.getParam(ParamType.Length).getValue() == this.length.getValue();
+	}
+
 }

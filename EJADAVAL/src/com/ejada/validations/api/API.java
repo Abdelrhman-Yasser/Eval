@@ -3,6 +3,7 @@ package com.ejada.validations.api;
 import com.appiancorp.suiteapi.expression.annotations.Category;
 import com.appiancorp.suiteapi.expression.annotations.Function;
 import com.appiancorp.suiteapi.expression.annotations.Parameter;
+
 import com.ejada.validations.complex.ArabicValidationConfig;
 import com.ejada.validations.complex.DateValidationConfig;
 import com.ejada.validations.complex.EmailValidationConfig;
@@ -187,6 +188,7 @@ public class API {
 	 *
 	 * @param Field value to be validated
 	 * @return Validation result
+	 * 
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
@@ -201,6 +203,6 @@ public class API {
 		
 		return result.is_valid() ;	
 	}
-	
+		
 	
 }

@@ -1,5 +1,7 @@
 package com.ejada.validations.complex;
 
+import javax.json.JsonObject;
+
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
@@ -8,25 +10,36 @@ import com.ejada.validations.params.ValidationParam;
 /**
  * The Class NumericValidationConfig.
  */
-public class NumericValidationConfig implements ValidationConfig{
-	
+public class NumericValidationConfig implements ValidationConfig {
+
 	/**
 	 * The type.
 	 */
-	private ValidationType type ;
-	
+	private ValidationType type;
+
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang ;
+	private ValidationParam<Language> lang;
 
-	
 	/**
 	 * Instantiates a new numeric validation config.
 	 *
 	 * @param lang the lang
 	 */
 	public NumericValidationConfig(Language lang) {
+		super();
+		this.type = ValidationType.Number;
+		this.lang = new LangParam(lang);
+	}
+
+	/**
+	 * Instantiates a new numeric validation config.
+	 *
+	 * @param params the params
+	 * @param lang   the lang
+	 */
+	public NumericValidationConfig(JsonObject params, Language lang) {
 		super();
 		this.type = ValidationType.Number;
 		this.lang = new LangParam(lang);
@@ -54,7 +67,7 @@ public class NumericValidationConfig implements ValidationConfig{
 		case Language:
 			return this.lang;
 		default:
-			return null ;
+			return null;
 		}
 	}
 

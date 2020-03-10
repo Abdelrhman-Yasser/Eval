@@ -1,5 +1,7 @@
 package com.ejada.validations.complex;
 
+import javax.json.JsonObject;
+
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
@@ -8,18 +10,18 @@ import com.ejada.validations.params.ValidationParam;
 /**
  * The Class RequiredValidationConfig.
  */
-public class RequiredValidationConfig implements ValidationConfig{
-	
+public class RequiredValidationConfig implements ValidationConfig {
+
 	/**
 	 * The type.
 	 */
-	private ValidationType type ;
-	
+	private ValidationType type;
+
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang ;
-	
+	private ValidationParam<Language> lang;
+
 	/**
 	 * Instantiates a new required validation config.
 	 *
@@ -30,7 +32,19 @@ public class RequiredValidationConfig implements ValidationConfig{
 		this.type = ValidationType.Required;
 		this.lang = new LangParam(lang);
 	}
-	
+
+	/**
+	 * Instantiates a new required validation config.
+	 *
+	 * @param params the params
+	 * @param lang   the lang
+	 */
+	public RequiredValidationConfig(JsonObject params, Language lang) {
+		super();
+		this.type = ValidationType.Required;
+		this.lang = new LangParam(lang);
+	}
+
 	/**
 	 * Gets the type.
 	 *
@@ -53,7 +67,7 @@ public class RequiredValidationConfig implements ValidationConfig{
 		case Language:
 			return this.lang;
 		default:
-			return null ;
+			return null;
 		}
 	}
 

@@ -38,7 +38,7 @@ public class WrongOperatorException extends Exception {
 	 * Instantiates a new wrong operator exception.
 	 *
 	 * @param operator the operator
-	 * @param cause the cause
+	 * @param cause    the cause
 	 */
 	public WrongOperatorException(String operator, Throwable cause) {
 		super(operator + " is not valid operator", cause);
@@ -47,9 +47,9 @@ public class WrongOperatorException extends Exception {
 	/**
 	 * Instantiates a new wrong operator exception.
 	 *
-	 * @param operator the operator
-	 * @param cause the cause
-	 * @param enableSuppression the enable suppression
+	 * @param operator           the operator
+	 * @param cause              the cause
+	 * @param enableSuppression  the enable suppression
 	 * @param writableStackTrace the writable stack trace
 	 */
 	public WrongOperatorException(String operator, Throwable cause, boolean enableSuppression,

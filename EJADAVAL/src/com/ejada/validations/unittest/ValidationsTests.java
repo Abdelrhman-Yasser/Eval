@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import com.ejada.validations.api.API;
 import com.ejada.validations.complex.ArabicValidationConfig;
+import com.ejada.validations.complex.ComplexIteratorValidator;
 import com.ejada.validations.complex.ComplexValidator;
 import com.ejada.validations.complex.DateValidationConfig;
 import com.ejada.validations.complex.EmailValidationConfig;
@@ -40,6 +41,7 @@ import com.ejada.validations.core.RequiredValidator;
 import com.ejada.validations.core.ValidatorFactory;
 import com.ejada.validations.core.enums.LengthOperator;
 import com.ejada.validations.exceptions.MissingParameterException;
+import com.ejada.validations.exceptions.ValidationConfigNotFound;
 import com.ejada.validations.exceptions.ValidationNotSupportedException;
 import com.ejada.validations.exceptions.WrongOperatorException;
 import com.ejada.validations.nationalization.Language;
@@ -55,7 +57,7 @@ class ValidationsTests {
 	 * Sanity arabic 1.
 	 */
 	@Test
-	void sanityArabic1() {
+	void sanityArabic1() throws ValidationConfigNotFound {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.ArabicLang);
 		val.setConfig(new ArabicValidationConfig(Language.English));
@@ -68,7 +70,7 @@ class ValidationsTests {
 	 * 
 	 */
 	@Test
-	void sanityArabic2() {
+	void sanityArabic2() throws ValidationConfigNotFound {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.ArabicLang);
 		val.setConfig(new ArabicValidationConfig(Language.English));
@@ -81,7 +83,7 @@ class ValidationsTests {
 	 * 
 	 */
 	@Test
-	void sanityArabic3() {
+	void sanityArabic3() throws ValidationConfigNotFound {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.ArabicLang);
 		val.setConfig(new ArabicValidationConfig(Language.English));
@@ -92,7 +94,7 @@ class ValidationsTests {
 	 * Sanity arabic 4.
 	 */
 	@Test
-	void sanityArabic4() {
+	void sanityArabic4() throws ValidationConfigNotFound {
 		ArabicLanguageValidator val = (ArabicLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.ArabicLang);
 		val.setConfig(new ArabicValidationConfig(Language.English));
@@ -103,7 +105,7 @@ class ValidationsTests {
 	 * Sanity english 1.
 	 */
 	@Test
-	void sanityEnglish1() {
+	void sanityEnglish1() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -114,7 +116,7 @@ class ValidationsTests {
 	 * Sanity english 2.
 	 */
 	@Test
-	void sanityEnglish2() {
+	void sanityEnglish2() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -125,7 +127,7 @@ class ValidationsTests {
 	 * Sanity english 3.
 	 */
 	@Test
-	void sanityEnglish3() {
+	void sanityEnglish3() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -136,7 +138,7 @@ class ValidationsTests {
 	 * Sanity english 4.
 	 */
 	@Test
-	void sanityEnglish4() {
+	void sanityEnglish4() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -147,7 +149,7 @@ class ValidationsTests {
 	 * Sanity english 5.
 	 */
 	@Test
-	void sanityEnglish5() {
+	void sanityEnglish5() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -158,7 +160,7 @@ class ValidationsTests {
 	 * Sanity english 6.
 	 */
 	@Test
-	void sanityEnglish6() {
+	void sanityEnglish6() throws ValidationConfigNotFound {
 		EnglishLanguageValidator val = (EnglishLanguageValidator) ValidatorFactory
 				.getValidator(ValidationType.EnglishLang);
 		val.setConfig(new EnglishValidationConfig(Language.English));
@@ -169,7 +171,7 @@ class ValidationsTests {
 	 * Sanity date 1.
 	 */
 	@Test
-	void sanityDate1() {
+	void sanityDate1() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("32/02/2012", "test").is_valid(), false);
@@ -179,7 +181,7 @@ class ValidationsTests {
 	 * Sanity date 2.
 	 */
 	@Test
-	void sanityDate2() {
+	void sanityDate2() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("31/20/2012", "test").is_valid(), false);
@@ -189,7 +191,7 @@ class ValidationsTests {
 	 * Sanity date 3.
 	 */
 	@Test
-	void sanityDate3() {
+	void sanityDate3() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("31/20/19991", "test").is_valid(), false);
@@ -199,7 +201,7 @@ class ValidationsTests {
 	 * Sanity date 4.
 	 */
 	@Test
-	void sanityDate4() {
+	void sanityDate4() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("2012/02/20", "test").is_valid(), false);
@@ -209,7 +211,7 @@ class ValidationsTests {
 	 * Sanity date 5.
 	 */
 	@Test
-	void sanityDate5() {
+	void sanityDate5() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("28/02/2011", "test").is_valid(), true);
@@ -219,7 +221,7 @@ class ValidationsTests {
 	 * Sanity date 6.
 	 */
 	@Test
-	void sanityDate6() {
+	void sanityDate6() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("31/01/2012", "test").is_valid(), true);
@@ -229,7 +231,7 @@ class ValidationsTests {
 	 * Sanity date 7.
 	 */
 	@Test
-	void sanityDate7() {
+	void sanityDate7() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("30/04/2012", "test").is_valid(), true);
@@ -239,7 +241,7 @@ class ValidationsTests {
 	 * Sanity date 8.
 	 */
 	@Test
-	void sanityDate8() {
+	void sanityDate8() throws ValidationConfigNotFound {
 		DateValidator val = (DateValidator) ValidatorFactory.getValidator(ValidationType.Date);
 		val.setConfig(new DateValidationConfig("dd/MM/yyyy", Language.English));
 		assertEquals(val.validate("Ahmed hamad", "test").is_valid(), false);
@@ -249,7 +251,7 @@ class ValidationsTests {
 	 * Sanity email 1.
 	 */
 	@Test
-	void sanityEmail1() {
+	void sanityEmail1() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user@domain.com", "test").is_valid());
@@ -259,7 +261,7 @@ class ValidationsTests {
 	 * Sanity email 2.
 	 */
 	@Test
-	void sanityEmail2() {
+	void sanityEmail2() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user@domain.co.in", "test").is_valid());
@@ -269,7 +271,7 @@ class ValidationsTests {
 	 * Sanity email 3.
 	 */
 	@Test
-	void sanityEmail3() {
+	void sanityEmail3() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user1@domain.com", "test").is_valid());
@@ -279,7 +281,7 @@ class ValidationsTests {
 	 * Sanity email 4.
 	 */
 	@Test
-	void sanityEmail4() {
+	void sanityEmail4() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user.name@domain.com", "test").is_valid());
@@ -289,7 +291,7 @@ class ValidationsTests {
 	 * Sanity email 5.
 	 */
 	@Test
-	void sanityEmail5() {
+	void sanityEmail5() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user#@domain.co.in", "test").is_valid());
@@ -299,7 +301,7 @@ class ValidationsTests {
 	 * Sanity email 6.
 	 */
 	@Test
-	void sanityEmail6() {
+	void sanityEmail6() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertTrue(val.validate("user@domaincom", "test").is_valid());
@@ -309,7 +311,7 @@ class ValidationsTests {
 	 * Sanity email 7.
 	 */
 	@Test
-	void sanityEmail7() {
+	void sanityEmail7() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertFalse(val.validate("user#domain.com", "test").is_valid());
@@ -319,7 +321,7 @@ class ValidationsTests {
 	 * Sanity email 8.
 	 */
 	@Test
-	void sanityEmail8() {
+	void sanityEmail8() throws ValidationConfigNotFound {
 		EmailValidator val = (EmailValidator) ValidatorFactory.getValidator(ValidationType.Email);
 		val.setConfig(new EmailValidationConfig(Language.English));
 		assertFalse(val.validate("@yahoo.com", "test").is_valid());
@@ -329,7 +331,7 @@ class ValidationsTests {
 	 * Sanity length less bad.
 	 */
 	@Test
-	void sanityLengthLessBad() {
+	void sanityLengthLessBad() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(1, LengthOperator.LESS, Language.English));
 		assertEquals(val.validate("Ahmed hamad", "test").is_valid(), false);
@@ -340,7 +342,7 @@ class ValidationsTests {
 	 * Sanity length less GOOD.
 	 */
 	@Test
-	void sanityLengthLessGOOD() {
+	void sanityLengthLessGOOD() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(50, LengthOperator.LESS, Language.English));
 		assertEquals(val.validate("Ahmed hamad", "test").is_valid(), true);
@@ -350,7 +352,7 @@ class ValidationsTests {
 	 * Sanity length greater bad.
 	 */
 	@Test
-	void sanityLengthGreaterBad() {
+	void sanityLengthGreaterBad() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(1, LengthOperator.GREATER, Language.English));
 		assertEquals(val.validate("a", "test").is_valid(), false);
@@ -360,7 +362,7 @@ class ValidationsTests {
 	 * Sanity length greater GOOD.
 	 */
 	@Test
-	void sanityLengthGreaterGOOD() {
+	void sanityLengthGreaterGOOD() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(5, LengthOperator.GREATER, Language.English));
 		assertEquals(val.validate("Ahmed hamad", "test").is_valid(), true);
@@ -371,7 +373,7 @@ class ValidationsTests {
 	 * Sanity length equal GOOD.
 	 */
 	@Test
-	void sanityLengthEqualGOOD() {
+	void sanityLengthEqualGOOD() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(5, LengthOperator.EQUAL, Language.English));
 		assertEquals(val.validate("Ahmed", "test").is_valid(), true);
@@ -381,7 +383,7 @@ class ValidationsTests {
 	 * Sanity length equal BAD.
 	 */
 	@Test
-	void sanityLengthEqualBAD() {
+	void sanityLengthEqualBAD() throws ValidationConfigNotFound {
 		LengthValidator val = (LengthValidator) ValidatorFactory.getValidator(ValidationType.Length);
 		val.setConfig(new LengthValidationConfig(7, LengthOperator.EQUAL, Language.English));
 		assertEquals(val.validate("Ahmed", "test").is_valid(), false);
@@ -391,7 +393,7 @@ class ValidationsTests {
 	 * Sanity numeric bad 1.
 	 */
 	@Test
-	void sanityNumericBad1() {
+	void sanityNumericBad1() throws ValidationConfigNotFound {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number);
 		val.setConfig(new NumericValidationConfig(Language.English));
 		assertEquals(val.validate("Ahmed", "test").is_valid(), false);
@@ -401,7 +403,7 @@ class ValidationsTests {
 	 * Sanity numeric bad 2.
 	 */
 	@Test
-	void sanityNumericBad2() {
+	void sanityNumericBad2() throws ValidationConfigNotFound {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number);
 		val.setConfig(new NumericValidationConfig(Language.English));
 		assertEquals(val.validate("12123909124.1230412309423409", "test").is_valid(), false);
@@ -412,7 +414,7 @@ class ValidationsTests {
 	 * Sanity numeric good.
 	 */
 	@Test
-	void sanityNumericGood() {
+	void sanityNumericGood() throws ValidationConfigNotFound {
 		NumericValidator val = (NumericValidator) ValidatorFactory.getValidator(ValidationType.Number);
 		val.setConfig(new NumericValidationConfig(Language.English));
 		assertEquals(val.validate("121239091241230412309423409", "test").is_valid(), true);
@@ -423,7 +425,7 @@ class ValidationsTests {
 	 * Sanity float good 1.
 	 */
 	@Test
-	void sanityFloatGood1() {
+	void sanityFloatGood1() throws ValidationConfigNotFound {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float);
 		val.setConfig(new FloatValidationConfig(Language.English));
 		assertEquals(val.validate("1.12", "test").is_valid(), true);
@@ -434,7 +436,7 @@ class ValidationsTests {
 	 * Sanity float good 2.
 	 */
 	@Test
-	void sanityFloatGood2() {
+	void sanityFloatGood2() throws ValidationConfigNotFound {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float);
 		val.setConfig(new FloatValidationConfig(Language.English));
 		assertEquals(val.validate("112", "test").is_valid(), true);
@@ -445,7 +447,7 @@ class ValidationsTests {
 	 * Sanity float bad.
 	 */
 	@Test
-	void sanityFloatBad() {
+	void sanityFloatBad() throws ValidationConfigNotFound {
 		FloatValidator val = (FloatValidator) ValidatorFactory.getValidator(ValidationType.Float);
 		val.setConfig(new FloatValidationConfig(Language.English));
 		assertEquals(val.validate("112..98", "test").is_valid(), false);
@@ -455,7 +457,7 @@ class ValidationsTests {
 	 * Sanity required bad 1.
 	 */
 	@Test
-	void sanityRequiredBad1() {
+	void sanityRequiredBad1() throws ValidationConfigNotFound {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required);
 		val.setConfig(new RequiredValidationConfig(Language.English));
 		assertEquals(val.validate("null", "test").is_valid(), false);
@@ -465,7 +467,7 @@ class ValidationsTests {
 	 * Sanity required bad 2.
 	 */
 	@Test
-	void sanityRequiredBad2() {
+	void sanityRequiredBad2() throws ValidationConfigNotFound {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required);
 		val.setConfig(new RequiredValidationConfig(Language.English));
 		assertEquals(val.validate("Null", "test").is_valid(), false);
@@ -475,7 +477,7 @@ class ValidationsTests {
 	 * Sanity required bad 3.
 	 */
 	@Test
-	void sanityRequiredBad3() {
+	void sanityRequiredBad3() throws ValidationConfigNotFound {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required);
 		val.setConfig(new RequiredValidationConfig(Language.English));
 		assertEquals(val.validate("   ", "test").is_valid(), false);
@@ -483,9 +485,11 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required bad 4.
+	 * 
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityRequiredBad4() {
+	void sanityRequiredBad4() throws ValidationConfigNotFound {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required);
 		val.setConfig(new RequiredValidationConfig(Language.English));
 		assertEquals(val.validate("{}", "test").is_valid(), false);
@@ -493,9 +497,11 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required good.
+	 * 
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityRequiredGood() {
+	void sanityRequiredGood() throws ValidationConfigNotFound {
 		RequiredValidator val = (RequiredValidator) ValidatorFactory.getValidator(ValidationType.Required);
 		val.setConfig(new RequiredValidationConfig(Language.English));
 		assertEquals(val.validate("{{id:\"123\"}}", "test").is_valid(), true);
@@ -503,15 +509,20 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 1.
+	 * 
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityComplex1() {
+	void sanityComplex1() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
+			ValidationConfigNotFound {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>();
 		confgs.add(new RequiredValidationConfig(Language.English));
 		confgs.add(new ArabicValidationConfig(Language.English));
 		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER, Language.English));
-		ComplexValidator val = new ComplexValidator();
-		ArrayList<ValidationResult> results = val.validate(" ", "test", confgs);
+		ArrayList<ValidationResult> results = ComplexValidator.validate(" ", "test", confgs);
 		assertFalse(results.get(0).is_valid());
 		assertTrue(results.get(1).is_valid());
 		assertFalse(results.get(2).is_valid());
@@ -519,15 +530,20 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 2.
+	 * 
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityComplex2() {
+	void sanityComplex2() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
+			ValidationConfigNotFound {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>();
 		confgs.add(new RequiredValidationConfig(Language.English));
 		confgs.add(new ArabicValidationConfig(Language.English));
 		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER, Language.English));
-		ComplexValidator val = new ComplexValidator();
-		ArrayList<ValidationResult> results = val.validate("Ahmedkhaled", "test", confgs);
+		ArrayList<ValidationResult> results = ComplexValidator.validate("Ahmedkhaled", "test", confgs);
 		assertTrue(results.get(0).is_valid());
 		assertFalse(results.get(1).is_valid());
 		assertTrue(results.get(2).is_valid());
@@ -535,15 +551,20 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 3.
+	 * 
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityComplex3() {
+	void sanityComplex3() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
+			ValidationConfigNotFound {
 		ArrayList<ValidationConfig> confgs = new ArrayList<ValidationConfig>();
 		confgs.add(new RequiredValidationConfig(Language.English));
 		confgs.add(new ArabicValidationConfig(Language.English));
 		confgs.add(new LengthValidationConfig(10, LengthOperator.GREATER, Language.English));
-		ComplexValidator val = new ComplexValidator();
-		ArrayList<ValidationResult> results = val.validate("احمد حامد", "test", confgs);
+		ArrayList<ValidationResult> results = ComplexValidator.validate("احمد حامد", "test", confgs);
 		assertTrue(results.get(0).is_valid());
 		assertTrue(results.get(1).is_valid());
 		assertFalse(results.get(2).is_valid());
@@ -552,10 +573,11 @@ class ValidationsTests {
 	/**
 	 * Sanity nationalization 1.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityNationalization1() throws IOException {
+	void sanityNationalization1() throws IOException, ValidationConfigNotFound {
 		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY, Language.English);
 		assertEquals(msg, "must contain only English letters");
 	}
@@ -563,10 +585,11 @@ class ValidationsTests {
 	/**
 	 * Sanity nationalization 2.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityNationalization2() throws IOException {
+	void sanityNationalization2() throws IOException, ValidationConfigNotFound {
 		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY, Language.Arabic);
 		assertEquals(msg, "ليس قيمة باللغة الانجليزية");
 	}
@@ -574,11 +597,11 @@ class ValidationsTests {
 	/**
 	 * Sanity nationalization change english.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityNationalizationChangeEnglish() throws IOException {
-		Nationalization.setEnglishTranslation("testChange", "value");
+	void sanityNationalizationChangeEnglish() throws IOException, ValidationConfigNotFound {
 		String msg = Nationalization.getTranslation("testChange", Language.English);
 		assertEquals(msg, "value");
 	}
@@ -586,11 +609,11 @@ class ValidationsTests {
 	/**
 	 * Sanity nationalization change arabic.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException              Signals that an I/O exception has occurred.
+	 * @throws ValidationConfigNotFound
 	 */
 	@Test
-	void sanityNationalizationChangeArabic() throws IOException {
-		Nationalization.setArabicTranslation("testChange", "قيمة");
+	void sanityNationalizationChangeArabic() throws IOException, ValidationConfigNotFound {
 		String msg = Nationalization.getTranslation("testChange", Language.Arabic);
 		assertEquals(msg, "قيمة");
 	}
@@ -627,6 +650,27 @@ class ValidationsTests {
 		assertEquals(mapping.get("RPINFO.POI.POINUMBER").contains(new EmailValidationConfig(Language.English)), true);
 		assertEquals(mapping.get("RPINFO.POI.POINUMBER").contains(new NumericValidationConfig(Language.English)), true);
 		assertEquals(mapping.get("RPINFO.POI.POINUMBER").contains(new FloatValidationConfig(Language.English)), true);
+
+	}
+
+	@Test
+	void sanityConfigurationSerialization2() throws FileNotFoundException, ValidationNotSupportedException,
+			MissingParameterException, WrongOperatorException, ValidationConfigNotFound {
+
+		File file = new File("json test cases/1.json");
+		JsonObject validationConfig = Json.createReader(new FileInputStream(file)).readObject();
+
+		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer
+				.serialzieValidations(validationConfig, Language.English);
+
+		file = new File("json test cases/request1.json");
+		JsonObject obj = Json.createReader(new FileInputStream(file)).readObject();
+
+		ComplexIteratorValidator val = new ComplexIteratorValidator();
+
+		ArrayList<ValidationResult> res = val.validate(obj, mapping);
+
+		System.out.println(res);
 
 	}
 

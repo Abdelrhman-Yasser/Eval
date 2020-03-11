@@ -1,6 +1,8 @@
 package com.ejada.validations.result;
 
+import com.ejada.validations.exceptions.ValidationConfigNotFound;
 import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.nationalization.Nationalization;
 
 /**
  * The Class ArabicLanguageResult.
@@ -10,18 +12,18 @@ public class ArabicLanguageResult implements ValidationResult {
 	/**
 	 * The message.
 	 */
-	private final String message = "" ;
-	
+	private String message = "";
+
 	/**
 	 * The code.
 	 */
-	private final String code = "" ;
-	
+	private final String code = "";
+
 	/**
 	 * The field name.
 	 */
-	private String fieldName ;
-	
+	private String fieldName;
+
 	/**
 	 * The valid.
 	 */
@@ -30,14 +32,24 @@ public class ArabicLanguageResult implements ValidationResult {
 	/**
 	 * Instantiates a new arabic language result.
 	 *
-	 * @param valid the valid
+	 * @param valid     the valid
 	 * @param fieldName the field name
-	 * @param lang the lang
+	 * @param lang      the lang
+	 * @throws ValidationConfigNotFound
 	 */
-	public ArabicLanguageResult(boolean valid, String fieldName, Language lang) {
+	public ArabicLanguageResult(boolean valid, String fieldName, Language lang) throws ValidationConfigNotFound {
 		super();
-		this.valid = valid ;
-		this.fieldName = fieldName ;
+		this.valid = valid;
+		this.fieldName = fieldName;
+		this.message = Nationalization.getTranslation(Nationalization.ARABIC_ERROR_KEY, lang);
+	}
+
+	@Override
+	public String toString() {
+		if (!valid)
+			return get_error_message();
+		else
+			return fieldName + " validated true";
 	}
 
 	/**
@@ -59,7 +71,6 @@ public class ArabicLanguageResult implements ValidationResult {
 	public boolean is_valid() {
 		return valid;
 	}
-
 
 	/**
 	 * Gets the error code.

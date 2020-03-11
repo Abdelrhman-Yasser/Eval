@@ -117,6 +117,12 @@ public class LengthValidationConfig implements ValidationConfig {
 		}
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub

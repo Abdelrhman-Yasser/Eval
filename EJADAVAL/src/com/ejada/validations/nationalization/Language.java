@@ -4,16 +4,16 @@ package com.ejada.validations.nationalization;
  * The Enum Language.
  */
 public enum Language {
-	
+
 	/**
 	 * The English.
 	 */
-	English("EN"), /**
-  * The Arabic.
-  */
- Arabic("AR") ;
-	
-	
+	English("EN"),
+	/**
+	 * The Arabic.
+	 */
+	Arabic("AR");
+
 	/**
 	 * The value.
 	 */

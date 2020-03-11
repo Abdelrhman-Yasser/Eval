@@ -1,6 +1,7 @@
 package com.ejada.validations.core;
 
 import com.ejada.validations.complex.EnglishValidationConfig;
+import com.ejada.validations.exceptions.ValidationConfigNotFound;
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.EnglishLanguageResult;
@@ -9,13 +10,13 @@ import com.ejada.validations.result.ValidationResult;
 /**
  * The Class EnglishLanguageValidator.
  */
-public class EnglishLanguageValidator implements Validator{
-	
+public class EnglishLanguageValidator implements Validator {
+
 	/**
 	 * The config.
 	 */
-	private EnglishValidationConfig config ; 
-	
+	private EnglishValidationConfig config;
+
 	/**
 	 * Instantiates a new english language validator.
 	 */
@@ -32,23 +33,25 @@ public class EnglishLanguageValidator implements Validator{
 		super();
 		this.config = config;
 	}
-	
+
 	/**
 	 * Validate.
 	 *
-	 * @param field the field
+	 * @param field     the field
 	 * @param fieldName the field name
 	 * @return the validation result
+	 * @throws ValidationConfigNotFound
 	 */
 	@Override
-	public ValidationResult validate(String field, String fieldName){
-		return new EnglishLanguageResult(field.matches("^[a-zA-Z ]+$"), fieldName, (Language)config.getParam(ParamType.Language).getValue());
+	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
+		return new EnglishLanguageResult(field.matches("^[a-zA-Z ]+$"), fieldName,
+				(Language) config.getParam(ParamType.Language).getValue());
 	}
 
 	/**
 	 * Sets the config.
 	 *
-	 * @param T the generic type
+	 * @param T      the generic type
 	 * @param config the new config
 	 */
 	@Override

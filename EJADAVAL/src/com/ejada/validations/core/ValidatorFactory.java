@@ -6,7 +6,7 @@ import com.ejada.validations.complex.ValidationType;
  * A factory for creating Validator objects.
  */
 public class ValidatorFactory {
-	
+
 	/**
 	 * The arabic language validator.
 	 */
@@ -17,28 +17,28 @@ public class ValidatorFactory {
 	 *
 	 * @return the arabic language validator
 	 */
-	private synchronized static ArabicLanguageValidator getArabicLanguageValidator () {
-		if(arabicLanguageValidator == null)
-			arabicLanguageValidator = new ArabicLanguageValidator() ;
-		return arabicLanguageValidator ;
+	private synchronized static ArabicLanguageValidator getArabicLanguageValidator() {
+		if (arabicLanguageValidator == null)
+			arabicLanguageValidator = new ArabicLanguageValidator();
+		return arabicLanguageValidator;
 	}
-	
+
 	/**
 	 * The English language validator.
 	 */
 	private static EnglishLanguageValidator EnglishLanguageValidator;
-	
+
 	/**
 	 * Gets the english language validator.
 	 *
 	 * @return the english language validator
 	 */
-	private synchronized static EnglishLanguageValidator getEnglishLanguageValidator () {
-		if(EnglishLanguageValidator == null)
-			EnglishLanguageValidator = new EnglishLanguageValidator() ;
-		return EnglishLanguageValidator ;
+	private synchronized static EnglishLanguageValidator getEnglishLanguageValidator() {
+		if (EnglishLanguageValidator == null)
+			EnglishLanguageValidator = new EnglishLanguageValidator();
+		return EnglishLanguageValidator;
 	}
-	
+
 	/**
 	 * The date validator.
 	 */
@@ -49,12 +49,12 @@ public class ValidatorFactory {
 	 *
 	 * @return the date validator
 	 */
-	private synchronized static DateValidator getDateValidator () {
-		if(dateValidator == null)
-			dateValidator = new DateValidator() ;
-		return dateValidator ;
+	private synchronized static DateValidator getDateValidator() {
+		if (dateValidator == null)
+			dateValidator = new DateValidator();
+		return dateValidator;
 	}
-	
+
 	/**
 	 * The length validator.
 	 */
@@ -65,12 +65,12 @@ public class ValidatorFactory {
 	 *
 	 * @return the length validator
 	 */
-	private synchronized static LengthValidator getLengthValidator () {
-		if(lengthValidator == null)
-			lengthValidator = new LengthValidator() ;
-		return lengthValidator ;
+	private synchronized static LengthValidator getLengthValidator() {
+		if (lengthValidator == null)
+			lengthValidator = new LengthValidator();
+		return lengthValidator;
 	}
-	
+
 	/**
 	 * The numeric validator.
 	 */
@@ -81,12 +81,12 @@ public class ValidatorFactory {
 	 *
 	 * @return the numeric validator
 	 */
-	private synchronized static NumericValidator getNumericValidator () {
-		if(numericValidator == null)
-			numericValidator = new NumericValidator() ;
-		return numericValidator ;
+	private synchronized static NumericValidator getNumericValidator() {
+		if (numericValidator == null)
+			numericValidator = new NumericValidator();
+		return numericValidator;
 	}
-	
+
 	/**
 	 * The float validator.
 	 */
@@ -97,12 +97,12 @@ public class ValidatorFactory {
 	 *
 	 * @return the float validator
 	 */
-	private synchronized static FloatValidator getFloatValidator () {
-		if(floatValidator == null)
-			floatValidator = new FloatValidator() ;
-		return floatValidator ;
+	private synchronized static FloatValidator getFloatValidator() {
+		if (floatValidator == null)
+			floatValidator = new FloatValidator();
+		return floatValidator;
 	}
-	
+
 	/**
 	 * The required validator.
 	 */
@@ -113,28 +113,44 @@ public class ValidatorFactory {
 	 *
 	 * @return the required validator
 	 */
-	private synchronized static RequiredValidator getRequiredValidator () {
-		if(requiredValidator == null)
-			requiredValidator = new RequiredValidator() ;
-		return requiredValidator ;
+	private synchronized static RequiredValidator getRequiredValidator() {
+		if (requiredValidator == null)
+			requiredValidator = new RequiredValidator();
+		return requiredValidator;
 	}
-	
+
 	/**
 	 * The email validator.
 	 */
 	private static EmailValidator emailValidator;
-	
+
 	/**
 	 * Gets the email validator.
 	 *
 	 * @return the email validator
 	 */
-	private synchronized static EmailValidator getEmailValidator () {
-		if(emailValidator == null)
-			emailValidator = new EmailValidator() ;
-		return emailValidator ;
+	private synchronized static EmailValidator getEmailValidator() {
+		if (emailValidator == null)
+			emailValidator = new EmailValidator();
+		return emailValidator;
 	}
-	
+
+	/**
+	 * The email validator.
+	 */
+	private static JsonValidator jsonValidator;
+
+	/**
+	 * Gets the email validator.
+	 *
+	 * @return the email validator
+	 */
+	public synchronized static JsonValidator getJsonValidator() {
+		if (jsonValidator == null)
+			jsonValidator = new JsonValidator();
+		return jsonValidator;
+	}
+
 	/**
 	 * Gets the validator.
 	 *
@@ -143,24 +159,26 @@ public class ValidatorFactory {
 	 */
 	public static Validator getValidator(ValidationType type) {
 		switch (type) {
-			case ArabicLang:
-				return getArabicLanguageValidator();
-			case EnglishLang:
-				return getEnglishLanguageValidator();
-			case Date:
-				return getDateValidator();
-			case Float:
-				return getFloatValidator();
-			case Length:
-				return getLengthValidator();
-			case Number:
-				return getNumericValidator();
-			case Required:
-				return getRequiredValidator();
-			case Email:
-				return getEmailValidator();
+		case ArabicLang:
+			return getArabicLanguageValidator();
+		case EnglishLang:
+			return getEnglishLanguageValidator();
+		case Date:
+			return getDateValidator();
+		case Float:
+			return getFloatValidator();
+		case Length:
+			return getLengthValidator();
+		case Number:
+			return getNumericValidator();
+		case Required:
+			return getRequiredValidator();
+		case Email:
+			return getEmailValidator();
+		default:
+			break;
 		}
 		return null;
 	}
-	
+
 }

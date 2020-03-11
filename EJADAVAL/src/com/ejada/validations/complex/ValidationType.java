@@ -9,39 +9,54 @@ public enum ValidationType {
 	 * The Required.
 	 */
 	Required("Required"),
+
 	/**
 	 * The Number.
 	 */
 	Number("Number"),
+
 	/**
 	 * The Float.
 	 */
 	Float("Float"),
+
 	/**
 	 * The Length.
 	 */
 	Length("Length"),
+
 	/**
 	 * The Arabic lang.
 	 */
 	ArabicLang("ArabicLang"),
+
 	/**
 	 * The English lang.
 	 */
 	EnglishLang("EnglishLang"),
+
 	/**
 	 * The Date.
 	 */
 	Date("Date"),
+
 	/**
 	 * The Email.
 	 */
-	Email("Email");
+	Email("Email"),
 
+	/**
+	 * The Json.
+	 */
+	Json("Json");
+
+	/**
+	 * The value.
+	 */
 	private String value;
 
 	/**
-	 * Instantiates a new length operator.
+	 * Instantiates a new validation type.
 	 *
 	 * @param value the value
 	 */

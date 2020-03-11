@@ -41,7 +41,7 @@ public class EmailValidationConfig implements ValidationConfig {
 	 */
 	public EmailValidationConfig(JsonObject params, Language lang) {
 		super();
-		this.type = ValidationType.ArabicLang;
+		this.type = ValidationType.Email;
 		this.lang = new LangParam(lang);
 	}
 
@@ -71,6 +71,12 @@ public class EmailValidationConfig implements ValidationConfig {
 		}
 	}
 
+	/**
+	 * Equals.
+	 *
+	 * @param obj the obj
+	 * @return true, if successful
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub

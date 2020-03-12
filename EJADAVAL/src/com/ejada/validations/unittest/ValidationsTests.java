@@ -2,6 +2,7 @@ package com.ejada.validations.unittest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
@@ -668,9 +669,11 @@ class ValidationsTests {
 
 		ComplexIteratorValidator val = new ComplexIteratorValidator();
 
-		ArrayList<ValidationResult> res = val.validate(obj, mapping);
-
-		System.out.println(res);
+		try {
+			val.validate(obj, mapping);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}
 
 	}
 

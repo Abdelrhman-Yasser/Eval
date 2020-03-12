@@ -23,6 +23,7 @@ import com.appiancorp.suiteapi.expression.annotations.Category;
 import com.appiancorp.suiteapi.expression.annotations.Function;
 import com.appiancorp.suiteapi.expression.annotations.Parameter;
 import com.appiancorp.suiteapi.knowledge.Document;
+import com.appiancorp.suiteapi.type.TypedValue;
 import com.ejada.validations.complex.ArabicValidationConfig;
 import com.ejada.validations.complex.DateValidationConfig;
 import com.ejada.validations.complex.EmailValidationConfig;
@@ -226,7 +227,7 @@ public class API {
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public String[] validateJsonObject(ContentService sc, @Parameter String objJson, @Parameter long configJson,
+	public String[] validateJsonObject(ContentService sc, @Parameter String objJson, @Parameter TypedValue configJson,
 			@Parameter String language) throws ValidationConfigNotFound, NotValidJson, ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException, NotSupportedLanguage, URISyntaxException {
 
@@ -235,7 +236,8 @@ public class API {
 
 		JsonObject config;
 		try {
-			Document[] configJsonFile = sc.download(configJson, ContentConstants.VERSION_CURRENT, false);
+			Document[] configJsonFile = sc.download((Long) configJson.getValue(), ContentConstants.VERSION_CURRENT,
+					false);
 			config = Json.createReader(new FileInputStream(new File(configJsonFile[0].getInternalFilename())))
 					.readObject();
 		} catch (FileNotFoundException | InvalidContentException | InvalidVersionException | PrivilegeException e) {

@@ -30,7 +30,7 @@ public class LengthValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * The type.
@@ -48,7 +48,7 @@ public class LengthValidationConfig implements ValidationConfig {
 		super();
 		this.length = new LengthParam(length);
 		this.operator = new OperatorParam(operator);
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 		this.type = ValidationType.Length;
 	}
 
@@ -60,10 +60,10 @@ public class LengthValidationConfig implements ValidationConfig {
 	 * @throws MissingParameterException the missing parameter exception
 	 * @throws WrongOperatorException    the wrong operator exception
 	 */
-	public LengthValidationConfig(JsonObject params, Language lang)
+	public LengthValidationConfig(JsonObject params, LangParam<?> lang)
 			throws MissingParameterException, WrongOperatorException {
 		super();
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 		this.type = ValidationType.Length;
 
 		try {
@@ -125,12 +125,10 @@ public class LengthValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != LengthValidationConfig.class)
 			return false;
 		LengthValidationConfig other = ((LengthValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue()
-				&& other.getParam(ParamType.Operator).getValue() == this.operator.getValue()
+		return other.getParam(ParamType.Operator).getValue() == this.operator.getValue()
 				&& other.getParam(ParamType.Length).getValue() == this.length.getValue();
 	}
 

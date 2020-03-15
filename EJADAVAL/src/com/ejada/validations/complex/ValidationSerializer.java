@@ -12,7 +12,8 @@ import javax.json.JsonValue.ValueType;
 import com.ejada.validations.exceptions.MissingParameterException;
 import com.ejada.validations.exceptions.ValidationNotSupportedException;
 import com.ejada.validations.exceptions.WrongOperatorException;
-import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
+import com.ejada.validations.params.ParamType;
 
 /**
  * The Class ValidationSerializer.
@@ -52,18 +53,24 @@ public class ValidationSerializer {
 	/**
 	 * Serialzie validations.
 	 *
-	 * @param validations the validations
-	 * @param lang        the lang
+	 * @param config the config
 	 * @return the hash map
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
 	 */
-	public static HashMap<String, ArrayList<ValidationConfig>> serialzieValidations(JsonObject validations,
-			Language lang) throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
+	public static HashMap<String, ArrayList<ValidationConfig>> serialzieValidations(JsonValidationConfig config)
+			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
+
 		HashMap<String, ArrayList<ValidationConfig>> mapping = new HashMap<String, ArrayList<ValidationConfig>>();
-		dfs(validations, lang, "", mapping);
+
+		JsonObject configObject = (JsonObject) config.getParam(ParamType.Json).getValue();
+
+		LangParam<?> lang = (LangParam<?>) config.getParam(ParamType.Language);
+
+		dfs(configObject, lang, "", mapping);
+
 		return mapping;
 	}
 
@@ -79,7 +86,7 @@ public class ValidationSerializer {
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
 	 */
-	private static void dfs(JsonValue validations, Language lang, String key,
+	private static void dfs(JsonValue validations, LangParam<?> lang, String key,
 			HashMap<String, ArrayList<ValidationConfig>> mapping)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 		if (validations.getValueType().equals(ValueType.ARRAY)) {
@@ -122,7 +129,7 @@ public class ValidationSerializer {
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
 	 */
-	private static void buildValidations(JsonArray validations, Language lang, String key,
+	private static void buildValidations(JsonArray validations, LangParam<?> lang, String key,
 			HashMap<String, ArrayList<ValidationConfig>> mapping)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 		for (JsonObject validation : validations.getValuesAs(JsonObject.class)) {
@@ -142,7 +149,7 @@ public class ValidationSerializer {
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
 	 */
-	private static void buildValidation(JsonObject validations, Language lang, String key,
+	private static void buildValidation(JsonObject validations, LangParam<?> lang, String key,
 			HashMap<String, ArrayList<ValidationConfig>> mapping)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 

@@ -9,6 +9,7 @@ public enum Language {
 	 * The English.
 	 */
 	English("EN"),
+
 	/**
 	 * The Arabic.
 	 */

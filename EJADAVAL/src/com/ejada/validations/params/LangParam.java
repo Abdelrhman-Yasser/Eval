@@ -1,24 +1,31 @@
 package com.ejada.validations.params;
 
-import com.ejada.validations.nationalization.Language;
-
 /**
  * The Class LangParam.
+ *
+ * @param <T> the generic type
  */
-public class LangParam implements ValidationParam<Language> {
-	
+public class LangParam<T> implements ValidationParam<T> {
+
 	/**
 	 * The lang.
 	 */
-	private Language lang;
+	private T lang;
+
+	/**
+	 * The type.
+	 */
+	private ParamType type;
 
 	/**
 	 * Instantiates a new lang param.
 	 *
-	 * @param lang the lang
+	 * @param lang            the lang
+	 * @param translationType the translation type
 	 */
-	public LangParam(Language lang) {
+	public LangParam(T lang, ParamType translationType) {
 		super();
+		this.type = translationType;
 		this.lang = lang;
 	}
 
@@ -28,8 +35,17 @@ public class LangParam implements ValidationParam<Language> {
 	 * @return the value
 	 */
 	@Override
-	public Language getValue() {
+	public T getValue() {
 		return lang;
+	}
+
+	/**
+	 * Gets the type.
+	 *
+	 * @return the type
+	 */
+	public ParamType getType() {
+		return type;
 	}
 
 }

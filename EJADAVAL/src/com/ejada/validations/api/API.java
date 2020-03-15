@@ -33,15 +33,9 @@ import com.ejada.validations.complex.JsonValidationConfig;
 import com.ejada.validations.complex.LengthValidationConfig;
 import com.ejada.validations.complex.NumericValidationConfig;
 import com.ejada.validations.complex.RequiredValidationConfig;
-import com.ejada.validations.core.ArabicLanguageValidator;
-import com.ejada.validations.core.DateValidator;
-import com.ejada.validations.core.EmailValidator;
-import com.ejada.validations.core.EnglishLanguageValidator;
-import com.ejada.validations.core.FloatValidator;
+import com.ejada.validations.complex.ValidationType;
 import com.ejada.validations.core.JsonValidator;
-import com.ejada.validations.core.LengthValidator;
-import com.ejada.validations.core.NumericValidator;
-import com.ejada.validations.core.RequiredValidator;
+import com.ejada.validations.core.Validator;
 import com.ejada.validations.core.ValidatorFactory;
 import com.ejada.validations.core.enums.LengthOperator;
 import com.ejada.validations.exceptions.MissingParameterException;
@@ -65,20 +59,26 @@ public class API {
 	 * @param Operator type must be ("LESS THAN","GREATER THAN","EQUAL")
 	 * @param Length   that will be used in comparing
 	 * @return Validation result
-	 * @throws WrongOperatorException   the wrong operator exception
+	 * @throws WrongOperatorException          the wrong operator exception
 	 * @throws ValidationConfigNotFound
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldLength(@Parameter String field, @Parameter String operator, @Parameter Integer length)
-			throws WrongOperatorException, ValidationConfigNotFound {
+			throws WrongOperatorException, ValidationConfigNotFound, ValidationNotSupportedException,
+			MissingParameterException {
 
 		if (LengthOperator.getByCode(operator) == null)
 			throw new WrongOperatorException(operator);
 
-		ValidationResult result = new LengthValidator(new LengthValidationConfig(length,
-				LengthOperator.getByCode(operator), Language.getByCode(Language.English.getValue()))).validate(field,
-						"");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Length);
+
+		validator.setConfig(new LengthValidationConfig(length, LengthOperator.getByCode(operator),
+				Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -89,13 +89,20 @@ public class API {
 	 * @param Field value to be validated
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldEnglish(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldEnglish(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new EnglishLanguageValidator(
-				new EnglishValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.EnglishLang);
+
+		validator.setConfig(new EnglishValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -106,14 +113,21 @@ public class API {
 	 * @param Field value to be validated
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 * @throws s
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldArabic(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldArabic(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new ArabicLanguageValidator(
-				new ArabicValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.ArabicLang);
+
+		validator.setConfig(new ArabicValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -126,15 +140,21 @@ public class API {
 	 *              in Appian datetext documentation
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
 	public Boolean validateFieldDate(@Parameter String field, @Parameter String dateFormat)
-			throws ValidationConfigNotFound {
+			throws ValidationConfigNotFound, ValidationNotSupportedException, MissingParameterException,
+			WrongOperatorException {
 
-		ValidationResult result = new DateValidator(
-				new DateValidationConfig(dateFormat, Language.getByCode(Language.English.getValue()))).validate(field,
-						"");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Date);
+
+		validator.setConfig(new DateValidationConfig(dateFormat, Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -145,13 +165,20 @@ public class API {
 	 * @param Field value to be validated
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldFloat(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldFloat(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new FloatValidator(
-				new FloatValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Float);
+
+		validator.setConfig(new FloatValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -162,13 +189,20 @@ public class API {
 	 * @param Field value to be validated
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldNumeric(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldNumeric(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new NumericValidator(
-				new NumericValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Number);
+
+		validator.setConfig(new NumericValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -179,13 +213,20 @@ public class API {
 	 * @param Field value to be validated
 	 * @return Validation result
 	 * @throws ValidationConfigNotFound
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldRequired(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldRequired(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new RequiredValidator(
-				new RequiredValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Required);
+
+		validator.setConfig(new RequiredValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -195,15 +236,22 @@ public class API {
 	 *
 	 * @param Field value to be validated
 	 * @return Validation result
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFoundSS
+	 * @throws WrongOperatorException
+	 * @throws MissingParameterException
+	 * @throws ValidationNotSupportedException
 	 * 
 	 */
 	@Function
 	@Category("category.name.TextFunctions")
-	public Boolean validateFieldEmail(@Parameter String field) throws ValidationConfigNotFound {
+	public Boolean validateFieldEmail(@Parameter String field) throws ValidationConfigNotFound,
+			ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
-		ValidationResult result = new EmailValidator(
-				new EmailValidationConfig(Language.getByCode(Language.English.getValue()))).validate(field, "");
+		Validator validator = ValidatorFactory.getValidator(ValidationType.Email);
+
+		validator.setConfig(new EmailValidationConfig(Language.getByCode(Language.English.getValue())));
+
+		ValidationResult result = validator.validate(field, "");
 
 		return result.is_valid();
 	}
@@ -211,10 +259,10 @@ public class API {
 	/**
 	 * Validate json object.
 	 *
-	 * @param sc         the service content of Appian
-	 * @param objJson    the json object to be valdiated
-	 * @param configJson the validation configuration json
-	 * @param language   the language of results returned
+	 * @param sc               the service content of Appian
+	 * @param objJson          the json object to be valdiated
+	 * @param configJson       the validation configuration document
+	 * @param languageDocument the language bundle of results returned
 	 * @return the string[]
 	 * @throws ValidationConfigNotFound        the validation config not found
 	 * @throws NotValidJson                    the not valid json
@@ -228,11 +276,9 @@ public class API {
 	@Function
 	@Category("category.name.TextFunctions")
 	public String[] validateJsonObject(ContentService sc, @Parameter String objJson, @Parameter TypedValue configJson,
-			@Parameter String language) throws ValidationConfigNotFound, NotValidJson, ValidationNotSupportedException,
-			MissingParameterException, WrongOperatorException, NotSupportedLanguage, URISyntaxException {
-
-		if (Language.getByCode(language) == null)
-			throw new NotSupportedLanguage(language);
+			@Parameter(required = false) TypedValue languageDocument)
+			throws ValidationConfigNotFound, NotValidJson, ValidationNotSupportedException, MissingParameterException,
+			WrongOperatorException, NotSupportedLanguage, URISyntaxException {
 
 		JsonObject config;
 		try {
@@ -246,7 +292,19 @@ public class API {
 			throw new NotValidJson();
 		}
 
-		JsonValidationConfig valConfig = new JsonValidationConfig(config, Language.getByCode(language));
+		File optionalTranslationFile = null;
+
+		if (languageDocument != null) {
+			try {
+				Document[] trFile = sc.download((Long) languageDocument.getValue(), ContentConstants.VERSION_CURRENT,
+						false);
+				optionalTranslationFile = new File(trFile[0].getInternalFilename());
+			} catch (PrivilegeException | InvalidContentException | InvalidVersionException e) {
+				throw new ValidationConfigNotFound("Translation File");
+			}
+		}
+
+		JsonValidationConfig valConfig = new JsonValidationConfig(config, optionalTranslationFile);
 
 		JsonValidator validator = ValidatorFactory.getJsonValidator();
 

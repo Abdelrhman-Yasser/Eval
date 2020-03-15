@@ -20,7 +20,7 @@ public class EmailValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new email validation config.
@@ -30,7 +30,7 @@ public class EmailValidationConfig implements ValidationConfig {
 	public EmailValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.ArabicLang;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class EmailValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public EmailValidationConfig(JsonObject params, Language lang) {
+	public EmailValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.Email;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,11 +79,9 @@ public class EmailValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != EmailValidationConfig.class)
 			return false;
-		EmailValidationConfig other = ((EmailValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

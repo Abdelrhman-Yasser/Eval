@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 
 import com.ejada.validations.complex.DateValidationConfig;
 import com.ejada.validations.exceptions.ValidationConfigNotFound;
-import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.DateResult;
 import com.ejada.validations.result.ValidationResult;
@@ -43,12 +43,12 @@ public class DateValidator implements Validator {
 	 * @param field     the field
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
 		if (field == null)
-			return new DateResult(false, fieldName, (Language) config.getParam(ParamType.Language).getValue());
+			return new DateResult(false, fieldName, (LangParam<?>) config.getParam(ParamType.Language));
 
 		String dateFormat = (String) this.config.getParam(ParamType.DateFormat).getValue();
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
@@ -56,16 +56,16 @@ public class DateValidator implements Validator {
 		sdf.setLenient(false);
 		try {
 			sdf.parse(field);
-			return new DateResult(true, fieldName, (Language) config.getParam(ParamType.Language).getValue());
+			return new DateResult(true, fieldName, (LangParam<?>) config.getParam(ParamType.Language));
 		} catch (Exception e) {
-			return new DateResult(false, fieldName, (Language) config.getParam(ParamType.Language).getValue());
+			return new DateResult(false, fieldName, (LangParam<?>) config.getParam(ParamType.Language));
 		}
 	}
 
 	/**
 	 * Sets the config.
 	 *
-	 * @param T      the generic type
+	 * @param <T>    the generic type
 	 * @param config the new config
 	 */
 	@Override

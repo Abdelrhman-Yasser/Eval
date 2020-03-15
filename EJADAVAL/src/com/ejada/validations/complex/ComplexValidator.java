@@ -22,11 +22,11 @@ public class ComplexValidator {
 	 * @param fieldName the field name
 	 * @param configs   the configs
 	 * @return the array list
-	 * @throws WrongOperatorException
-	 * @throws MissingParameterException
-	 * @throws ValidationNotSupportedException
-	 * @throws ValidationConfigNotFound
-	 * 
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
 	 */
 	public static ArrayList<ValidationResult> validate(String field, String fieldName,
 			ArrayList<ValidationConfig> configs) throws ValidationNotSupportedException, MissingParameterException,

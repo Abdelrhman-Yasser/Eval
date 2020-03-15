@@ -1,5 +1,7 @@
 package com.ejada.validations.config;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
@@ -41,10 +43,22 @@ public class ConfigReader {
 	 * @return the string
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
+	public static String read(File file, String key) throws IOException {
+		Properties prop = new Properties();
+		prop.load(new InputStreamReader(new FileInputStream(file), Charset.forName("UTF-8")));
+		return prop.getProperty(key);
+	}
+
+	/**
+	 * Read.
+	 *
+	 * @param file the file
+	 * @param key  the key
+	 * @return the string
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static String read(String file, String key) throws IOException {
 		Properties prop = new Properties();
-//		FileInputStream ip = new FileInputStream(
-//				new ConfigReader().getClass().getClassLoader().getResource(file).getFile());\
 		prop.load(new InputStreamReader(new ConfigReader().getClass().getClassLoader().getResourceAsStream(file),
 				Charset.forName("UTF-8")));
 		return prop.getProperty(key);
@@ -59,8 +73,6 @@ public class ConfigReader {
 	 */
 	public static Properties getProp(String file) throws IOException {
 		Properties prop = new Properties();
-//		FileInputStream ip = new FileInputStream(
-//				new ConfigReader().getClass().getClassLoader().getResource(file).getFile());
 		prop.load(new InputStreamReader(new ConfigReader().getClass().getClassLoader().getResourceAsStream(file),
 				Charset.forName("UTF-8")));
 		return prop;

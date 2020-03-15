@@ -25,6 +25,7 @@ import com.ejada.validations.complex.DateValidationConfig;
 import com.ejada.validations.complex.EmailValidationConfig;
 import com.ejada.validations.complex.EnglishValidationConfig;
 import com.ejada.validations.complex.FloatValidationConfig;
+import com.ejada.validations.complex.JsonValidationConfig;
 import com.ejada.validations.complex.LengthValidationConfig;
 import com.ejada.validations.complex.NumericValidationConfig;
 import com.ejada.validations.complex.RequiredValidationConfig;
@@ -47,6 +48,8 @@ import com.ejada.validations.exceptions.ValidationNotSupportedException;
 import com.ejada.validations.exceptions.WrongOperatorException;
 import com.ejada.validations.nationalization.Language;
 import com.ejada.validations.nationalization.Nationalization;
+import com.ejada.validations.params.LangParam;
+import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.ValidationResult;
 
 /**
@@ -56,6 +59,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity arabic 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityArabic1() throws ValidationConfigNotFound {
@@ -66,9 +71,9 @@ class ValidationsTests {
 	}
 
 	/**
-	 * 
 	 * Sanity arabic 2.
-	 * 
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityArabic2() throws ValidationConfigNotFound {
@@ -79,9 +84,9 @@ class ValidationsTests {
 	}
 
 	/**
-	 * 
 	 * Sanity arabic 3.
-	 * 
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityArabic3() throws ValidationConfigNotFound {
@@ -93,6 +98,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity arabic 4.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityArabic4() throws ValidationConfigNotFound {
@@ -104,6 +111,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish1() throws ValidationConfigNotFound {
@@ -115,6 +124,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish2() throws ValidationConfigNotFound {
@@ -126,6 +137,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 3.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish3() throws ValidationConfigNotFound {
@@ -137,6 +150,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 4.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish4() throws ValidationConfigNotFound {
@@ -148,6 +163,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 5.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish5() throws ValidationConfigNotFound {
@@ -159,6 +176,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity english 6.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEnglish6() throws ValidationConfigNotFound {
@@ -170,6 +189,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate1() throws ValidationConfigNotFound {
@@ -180,6 +201,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate2() throws ValidationConfigNotFound {
@@ -190,6 +213,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 3.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate3() throws ValidationConfigNotFound {
@@ -200,6 +225,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 4.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate4() throws ValidationConfigNotFound {
@@ -210,6 +237,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 5.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate5() throws ValidationConfigNotFound {
@@ -220,6 +249,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 6.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate6() throws ValidationConfigNotFound {
@@ -230,6 +261,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 7.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate7() throws ValidationConfigNotFound {
@@ -240,6 +273,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity date 8.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityDate8() throws ValidationConfigNotFound {
@@ -250,6 +285,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail1() throws ValidationConfigNotFound {
@@ -260,6 +297,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail2() throws ValidationConfigNotFound {
@@ -270,6 +309,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 3.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail3() throws ValidationConfigNotFound {
@@ -280,6 +321,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 4.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail4() throws ValidationConfigNotFound {
@@ -290,6 +333,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 5.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail5() throws ValidationConfigNotFound {
@@ -300,6 +345,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 6.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail6() throws ValidationConfigNotFound {
@@ -310,6 +357,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 7.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail7() throws ValidationConfigNotFound {
@@ -320,6 +369,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity email 8.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityEmail8() throws ValidationConfigNotFound {
@@ -330,6 +381,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length less bad.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthLessBad() throws ValidationConfigNotFound {
@@ -341,6 +394,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length less GOOD.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthLessGOOD() throws ValidationConfigNotFound {
@@ -351,6 +406,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length greater bad.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthGreaterBad() throws ValidationConfigNotFound {
@@ -361,6 +418,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length greater GOOD.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthGreaterGOOD() throws ValidationConfigNotFound {
@@ -372,6 +431,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length equal GOOD.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthEqualGOOD() throws ValidationConfigNotFound {
@@ -382,6 +443,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity length equal BAD.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityLengthEqualBAD() throws ValidationConfigNotFound {
@@ -392,6 +455,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity numeric bad 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNumericBad1() throws ValidationConfigNotFound {
@@ -402,6 +467,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity numeric bad 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNumericBad2() throws ValidationConfigNotFound {
@@ -413,6 +480,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity numeric good.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNumericGood() throws ValidationConfigNotFound {
@@ -424,6 +493,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity float good 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityFloatGood1() throws ValidationConfigNotFound {
@@ -435,6 +506,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity float good 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityFloatGood2() throws ValidationConfigNotFound {
@@ -446,6 +519,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity float bad.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityFloatBad() throws ValidationConfigNotFound {
@@ -456,6 +531,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required bad 1.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityRequiredBad1() throws ValidationConfigNotFound {
@@ -466,6 +543,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required bad 2.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityRequiredBad2() throws ValidationConfigNotFound {
@@ -476,6 +555,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required bad 3.
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityRequiredBad3() throws ValidationConfigNotFound {
@@ -486,8 +567,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required bad 4.
-	 * 
-	 * @throws ValidationConfigNotFound
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityRequiredBad4() throws ValidationConfigNotFound {
@@ -498,8 +579,8 @@ class ValidationsTests {
 
 	/**
 	 * Sanity required good.
-	 * 
-	 * @throws ValidationConfigNotFound
+	 *
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityRequiredGood() throws ValidationConfigNotFound {
@@ -510,11 +591,12 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 1.
-	 * 
-	 * @throws WrongOperatorException
-	 * @throws MissingParameterException
-	 * @throws ValidationNotSupportedException
-	 * @throws ValidationConfigNotFound
+	 *
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
 	 */
 	@Test
 	void sanityComplex1() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
@@ -531,11 +613,12 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 2.
-	 * 
-	 * @throws WrongOperatorException
-	 * @throws MissingParameterException
-	 * @throws ValidationNotSupportedException
-	 * @throws ValidationConfigNotFound
+	 *
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
 	 */
 	@Test
 	void sanityComplex2() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
@@ -552,11 +635,12 @@ class ValidationsTests {
 
 	/**
 	 * Sanity complex 3.
-	 * 
-	 * @throws WrongOperatorException
-	 * @throws MissingParameterException
-	 * @throws ValidationNotSupportedException
-	 * @throws ValidationConfigNotFound
+	 *
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
 	 */
 	@Test
 	void sanityComplex3() throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
@@ -575,11 +659,12 @@ class ValidationsTests {
 	 * Sanity nationalization 1.
 	 *
 	 * @throws IOException              Signals that an I/O exception has occurred.
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNationalization1() throws IOException, ValidationConfigNotFound {
-		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY, Language.English);
+		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY,
+				new LangParam<Language>(Language.English, ParamType.Language));
 		assertEquals(msg, "must contain only English letters");
 	}
 
@@ -587,11 +672,12 @@ class ValidationsTests {
 	 * Sanity nationalization 2.
 	 *
 	 * @throws IOException              Signals that an I/O exception has occurred.
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNationalization2() throws IOException, ValidationConfigNotFound {
-		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY, Language.Arabic);
+		String msg = Nationalization.getTranslation(Nationalization.ENGLISH_ERROR_KEY,
+				new LangParam<Language>(Language.Arabic, ParamType.Language));
 		assertEquals(msg, "ليس قيمة باللغة الانجليزية");
 	}
 
@@ -599,11 +685,12 @@ class ValidationsTests {
 	 * Sanity nationalization change english.
 	 *
 	 * @throws IOException              Signals that an I/O exception has occurred.
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNationalizationChangeEnglish() throws IOException, ValidationConfigNotFound {
-		String msg = Nationalization.getTranslation("testChange", Language.English);
+		String msg = Nationalization.getTranslation("testChange",
+				new LangParam<Language>(Language.English, ParamType.Language));
 		assertEquals(msg, "value");
 	}
 
@@ -611,11 +698,12 @@ class ValidationsTests {
 	 * Sanity nationalization change arabic.
 	 *
 	 * @throws IOException              Signals that an I/O exception has occurred.
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Test
 	void sanityNationalizationChangeArabic() throws IOException, ValidationConfigNotFound {
-		String msg = Nationalization.getTranslation("testChange", Language.Arabic);
+		String msg = Nationalization.getTranslation("testChange",
+				new LangParam<Language>(Language.Arabic, ParamType.Language));
 		assertEquals(msg, "قيمة");
 	}
 
@@ -630,14 +718,27 @@ class ValidationsTests {
 		assertTrue(api.validateFieldLength("Asd", "EQUAL", 3));
 	}
 
+	/**
+	 * Sanity configuration serialization 1.
+	 *
+	 * @throws FileNotFoundException           the file not found exception
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 */
 	@Test
 	void sanityConfigurationSerialization1() throws FileNotFoundException, ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException {
 		File file = new File("json test cases/1.json");
 		JsonObject obj = Json.createReader(new FileInputStream(file)).readObject();
+
+		File translationFile = new File("json test cases/translation");
+
+		JsonValidationConfig valConfig = new JsonValidationConfig(obj, translationFile);
+
 		new ValidationSerializer();
-		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serialzieValidations(obj,
-				Language.English);
+		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serialzieValidations(valConfig);
 		assertEquals(mapping.get("RPINFO").contains(new RequiredValidationConfig(Language.English)), true);
 		assertEquals(mapping.get("RPINFO.POI.POINUMBER").contains(new RequiredValidationConfig(Language.English)),
 				true);
@@ -654,6 +755,16 @@ class ValidationsTests {
 
 	}
 
+	/**
+	 * Sanity configuration serialization 2.
+	 *
+	 * @throws FileNotFoundException           the file not found exception
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
+	 */
 	@Test
 	void sanityConfigurationSerialization2() throws FileNotFoundException, ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException, ValidationConfigNotFound {
@@ -661,8 +772,11 @@ class ValidationsTests {
 		File file = new File("json test cases/1.json");
 		JsonObject validationConfig = Json.createReader(new FileInputStream(file)).readObject();
 
-		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer
-				.serialzieValidations(validationConfig, Language.English);
+		File translationFile = new File("json test cases/translation");
+
+		JsonValidationConfig valConfig = new JsonValidationConfig(validationConfig, translationFile);
+
+		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serialzieValidations(valConfig);
 
 		file = new File("json test cases/request1.json");
 		JsonObject obj = Json.createReader(new FileInputStream(file)).readObject();

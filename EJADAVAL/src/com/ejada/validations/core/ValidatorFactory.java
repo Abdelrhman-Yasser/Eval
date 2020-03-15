@@ -136,14 +136,14 @@ public class ValidatorFactory {
 	}
 
 	/**
-	 * The email validator.
+	 * The json validator.
 	 */
 	private static JsonValidator jsonValidator;
 
 	/**
-	 * Gets the email validator.
+	 * Gets the json validator.
 	 *
-	 * @return the email validator
+	 * @return the json validator
 	 */
 	public synchronized static JsonValidator getJsonValidator() {
 		if (jsonValidator == null)

@@ -20,7 +20,7 @@ public class NumericValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new numeric validation config.
@@ -30,7 +30,7 @@ public class NumericValidationConfig implements ValidationConfig {
 	public NumericValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.Number;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class NumericValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public NumericValidationConfig(JsonObject params, Language lang) {
+	public NumericValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.Number;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,11 +79,9 @@ public class NumericValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != NumericValidationConfig.class)
 			return false;
-		NumericValidationConfig other = ((NumericValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

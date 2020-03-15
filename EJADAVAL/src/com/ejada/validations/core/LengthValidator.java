@@ -3,7 +3,7 @@ package com.ejada.validations.core;
 import com.ejada.validations.complex.LengthValidationConfig;
 import com.ejada.validations.core.enums.LengthOperator;
 import com.ejada.validations.exceptions.ValidationConfigNotFound;
-import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.LengthResult;
 import com.ejada.validations.result.ValidationResult;
@@ -41,7 +41,7 @@ public class LengthValidator implements Validator {
 	 * @param field     the field
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -51,13 +51,13 @@ public class LengthValidator implements Validator {
 		switch (operator) {
 		case LESS:
 			return new LengthResult(field.length() < length, fieldName,
-					(Language) config.getParam(ParamType.Language).getValue());
+					(LangParam<?>) config.getParam(ParamType.Language));
 		case GREATER:
 			return new LengthResult(field.length() > length, fieldName,
-					(Language) config.getParam(ParamType.Language).getValue());
+					(LangParam<?>) config.getParam(ParamType.Language));
 		case EQUAL:
 			return new LengthResult(field.length() == length, fieldName,
-					(Language) config.getParam(ParamType.Language).getValue());
+					(LangParam<?>) config.getParam(ParamType.Language));
 		}
 		return null;
 	}
@@ -65,7 +65,7 @@ public class LengthValidator implements Validator {
 	/**
 	 * Sets the config.
 	 *
-	 * @param T      the generic type
+	 * @param <T>    the generic type
 	 * @param config the new config
 	 */
 	@Override

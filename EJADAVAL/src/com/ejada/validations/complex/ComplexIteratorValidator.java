@@ -16,11 +16,14 @@ import com.ejada.validations.exceptions.MissingParameterException;
 import com.ejada.validations.exceptions.ValidationConfigNotFound;
 import com.ejada.validations.exceptions.ValidationNotSupportedException;
 import com.ejada.validations.exceptions.WrongOperatorException;
-import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.RequiredResult;
 import com.ejada.validations.result.ValidationResult;
 
+/**
+ * The Class ComplexIteratorValidator.
+ */
 public class ComplexIteratorValidator {
 
 	/**
@@ -28,16 +31,42 @@ public class ComplexIteratorValidator {
 	 */
 	private static final String dot = ".";
 
+	/**
+	 * The keys collected val.
+	 */
 	private Set<String> keysCollectedVal;
-	private Set<String> keysCollectedObj;
-	private HashMap<String, Language> reqLabelLang;
 
+	/**
+	 * The keys collected obj.
+	 */
+	private Set<String> keysCollectedObj;
+
+	/**
+	 * The req label lang.
+	 */
+	private HashMap<String, LangParam<?>> reqLabelLang;
+
+	/**
+	 * Instantiates a new complex iterator validator.
+	 */
 	public ComplexIteratorValidator() {
 		keysCollectedVal = new HashSet<String>();
 		keysCollectedObj = new HashSet<String>();
-		reqLabelLang = new HashMap<String, Language>();
+		reqLabelLang = new HashMap<String, LangParam<?>>();
 	}
 
+	/**
+	 * Validate.
+	 *
+	 * @param obj     the obj
+	 * @param configs the configs
+	 * @return the array list
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
+	 */
 	public ArrayList<ValidationResult> validate(JsonObject obj, HashMap<String, ArrayList<ValidationConfig>> configs)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
 			ValidationConfigNotFound {
@@ -51,6 +80,20 @@ public class ComplexIteratorValidator {
 		return results;
 	}
 
+	/**
+	 * Dfs.
+	 *
+	 * @param obj     the obj
+	 * @param key     the key
+	 * @param order   the order
+	 * @param mapping the mapping
+	 * @param results the results
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
+	 */
 	private void dfs(JsonValue obj, String key, int order, HashMap<String, ArrayList<ValidationConfig>> mapping,
 			ArrayList<ValidationResult> results) throws ValidationNotSupportedException, MissingParameterException,
 			WrongOperatorException, ValidationConfigNotFound {
@@ -81,6 +124,12 @@ public class ComplexIteratorValidator {
 		}
 	}
 
+	/**
+	 * Check not found fields.
+	 *
+	 * @param results the results
+	 * @throws ValidationConfigNotFound the validation config not found
+	 */
 	private void checkNotFoundFields(ArrayList<ValidationResult> results) throws ValidationConfigNotFound {
 		for (String key : keysCollectedVal) {
 			if (!keysCollectedObj.contains(key)) {
@@ -89,12 +138,30 @@ public class ComplexIteratorValidator {
 		}
 	}
 
+	/**
+	 * Excute validations.
+	 *
+	 * @param field     the field
+	 * @param fieldName the field name
+	 * @param config    the config
+	 * @param results   the results
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
+	 */
 	private void excuteValidations(String field, String fieldName, ArrayList<ValidationConfig> config,
 			ArrayList<ValidationResult> results) throws ValidationNotSupportedException, MissingParameterException,
 			WrongOperatorException, ValidationConfigNotFound {
 		results.addAll(ComplexValidator.validate(field, fieldName, config));
 	}
 
+	/**
+	 * Collect required.
+	 *
+	 * @param mapping the mapping
+	 */
 	private void collectRequired(HashMap<String, ArrayList<ValidationConfig>> mapping) {
 		for (Entry<String, ArrayList<ValidationConfig>> val : mapping.entrySet()) {
 			if (ContainsRequired(val.getValue(), val.getKey())) {
@@ -103,11 +170,18 @@ public class ComplexIteratorValidator {
 		}
 	}
 
+	/**
+	 * Contains required.
+	 *
+	 * @param config the config
+	 * @param key    the key
+	 * @return true, if successful
+	 */
 	private boolean ContainsRequired(ArrayList<ValidationConfig> config, String key) {
 		boolean res = false;
 		for (ValidationConfig val : config)
 			if (val.getClass() == RequiredValidationConfig.class) {
-				reqLabelLang.put(key, (Language) val.getParam(ParamType.Language).getValue());
+				reqLabelLang.put(key, (LangParam<?>) val.getParam(ParamType.Language));
 				res = true;
 			}
 		return res;

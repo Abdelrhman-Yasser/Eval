@@ -20,7 +20,7 @@ public class RequiredValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new required validation config.
@@ -30,7 +30,7 @@ public class RequiredValidationConfig implements ValidationConfig {
 	public RequiredValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.Required;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class RequiredValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public RequiredValidationConfig(JsonObject params, Language lang) {
+	public RequiredValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.Required;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,11 +79,9 @@ public class RequiredValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != RequiredValidationConfig.class)
 			return false;
-		RequiredValidationConfig other = ((RequiredValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

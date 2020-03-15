@@ -17,10 +17,11 @@ public interface Validator {
 	 * @param field     the field
 	 * @param FieldName the field name
 	 * @return the validation result
-	 * @throws WrongOperatorException
-	 * @throws MissingParameterException
-	 * @throws ValidationNotSupportedException
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationNotSupportedException the validation not supported
+	 *                                         exception
+	 * @throws MissingParameterException       the missing parameter exception
+	 * @throws WrongOperatorException          the wrong operator exception
+	 * @throws ValidationConfigNotFound        the validation config not found
 	 */
 	ValidationResult validate(String field, String FieldName) throws ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException, ValidationConfigNotFound;
@@ -28,7 +29,7 @@ public interface Validator {
 	/**
 	 * Sets the config.
 	 *
-	 * @param T      the generic type
+	 * @param <T>    the generic type
 	 * @param config the new config
 	 */
 	public <T> void setConfig(T config);

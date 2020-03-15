@@ -20,7 +20,7 @@ public class FloatValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new float validation config.
@@ -30,7 +30,7 @@ public class FloatValidationConfig implements ValidationConfig {
 	public FloatValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.Float;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class FloatValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public FloatValidationConfig(JsonObject params, Language lang) {
+	public FloatValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.Float;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,11 +79,9 @@ public class FloatValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != FloatValidationConfig.class)
 			return false;
-		FloatValidationConfig other = ((FloatValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

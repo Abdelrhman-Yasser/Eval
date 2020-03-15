@@ -20,7 +20,7 @@ public class ArabicValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new arabic validation config.
@@ -30,7 +30,7 @@ public class ArabicValidationConfig implements ValidationConfig {
 	public ArabicValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.ArabicLang;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class ArabicValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public ArabicValidationConfig(JsonObject params, Language lang) {
+	public ArabicValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.ArabicLang;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,10 +79,9 @@ public class ArabicValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != ArabicValidationConfig.class)
 			return false;
-		return ((ArabicValidationConfig) obj).getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

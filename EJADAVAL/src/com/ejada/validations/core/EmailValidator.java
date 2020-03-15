@@ -2,7 +2,7 @@ package com.ejada.validations.core;
 
 import com.ejada.validations.complex.EmailValidationConfig;
 import com.ejada.validations.exceptions.ValidationConfigNotFound;
-import com.ejada.validations.nationalization.Language;
+import com.ejada.validations.params.LangParam;
 import com.ejada.validations.params.ParamType;
 import com.ejada.validations.result.EmailResult;
 import com.ejada.validations.result.ValidationResult;
@@ -40,19 +40,19 @@ public class EmailValidator implements Validator {
 	 * @param field     the field
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound
+	 * @throws ValidationConfigNotFound the validation config not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
 		return new EmailResult(field.matches("^(.+)@(.+)$"), fieldName,
-				(Language) config.getParam(ParamType.Language).getValue());
+				(LangParam<?>) config.getParam(ParamType.Language));
 
 	}
 
 	/**
 	 * Sets the config.
 	 *
-	 * @param T      the generic type
+	 * @param <T>    the generic type
 	 * @param config the new config
 	 */
 	@Override

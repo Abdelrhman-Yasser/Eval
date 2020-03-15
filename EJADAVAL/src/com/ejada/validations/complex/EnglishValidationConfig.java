@@ -20,7 +20,7 @@ public class EnglishValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private ValidationParam<Language> lang;
+	private LangParam<?> lang;
 
 	/**
 	 * Instantiates a new english validation config.
@@ -30,7 +30,7 @@ public class EnglishValidationConfig implements ValidationConfig {
 	public EnglishValidationConfig(Language lang) {
 		super();
 		this.type = ValidationType.EnglishLang;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 	}
 
 	/**
@@ -39,10 +39,10 @@ public class EnglishValidationConfig implements ValidationConfig {
 	 * @param params the params
 	 * @param lang   the lang
 	 */
-	public EnglishValidationConfig(JsonObject params, Language lang) {
+	public EnglishValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
 		this.type = ValidationType.EnglishLang;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 	}
 
 	/**
@@ -79,11 +79,9 @@ public class EnglishValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != EnglishValidationConfig.class)
 			return false;
-		EnglishValidationConfig other = ((EnglishValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue();
+		return true;
 	}
 
 }

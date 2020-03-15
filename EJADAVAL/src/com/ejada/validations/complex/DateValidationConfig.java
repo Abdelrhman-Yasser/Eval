@@ -22,7 +22,7 @@ public class DateValidationConfig implements ValidationConfig {
 	/**
 	 * The lang.
 	 */
-	private LangParam lang;
+	private LangParam<?> lang;
 
 	/**
 	 * The date format.
@@ -38,7 +38,7 @@ public class DateValidationConfig implements ValidationConfig {
 	public DateValidationConfig(String dateFormat, Language lang) {
 		super();
 		this.type = ValidationType.Date;
-		this.lang = new LangParam(lang);
+		this.lang = new LangParam<Language>(lang, ParamType.Language);
 		this.dateFormat = new DateFormatParam(dateFormat);
 	}
 
@@ -49,10 +49,10 @@ public class DateValidationConfig implements ValidationConfig {
 	 * @param lang   the lang
 	 * @throws MissingParameterException the missing parameter exception
 	 */
-	public DateValidationConfig(JsonObject params, Language lang) throws MissingParameterException {
+	public DateValidationConfig(JsonObject params, LangParam<?> lang) throws MissingParameterException {
 		super();
 		this.type = ValidationType.Date;
-		this.lang = new LangParam(lang);
+		this.lang = lang;
 
 		try {
 			this.dateFormat = new DateFormatParam(params.getString(ParamType.DateFormat.toString()));
@@ -98,12 +98,10 @@ public class DateValidationConfig implements ValidationConfig {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		if (obj.getClass() != DateValidationConfig.class)
 			return false;
 		DateValidationConfig other = ((DateValidationConfig) obj);
-		return other.getParam(ParamType.Language).getValue() == this.lang.getValue()
-				&& other.getParam(ParamType.DateFormat).getValue().equals(this.dateFormat.getValue());
+		return other.getParam(ParamType.DateFormat).getValue().equals(this.dateFormat.getValue());
 	}
 
 }

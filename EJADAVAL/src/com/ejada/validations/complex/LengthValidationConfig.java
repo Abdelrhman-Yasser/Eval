@@ -28,7 +28,7 @@ public class LengthValidationConfig implements ValidationConfig {
 	private ValidationParam<LengthOperator> operator;
 
 	/**
-	 * The lang.
+	 * The language.
 	 */
 	private LangParam<?> lang;
 
@@ -38,11 +38,11 @@ public class LengthValidationConfig implements ValidationConfig {
 	private ValidationType type;
 
 	/**
-	 * Instantiates a new length validation config.
+	 * Instantiates a new length validation configuration.
 	 *
 	 * @param length   the length
 	 * @param operator the operator
-	 * @param lang     the lang
+	 * @param lang     the language
 	 */
 	public LengthValidationConfig(int length, LengthOperator operator, Language lang) {
 		super();
@@ -53,10 +53,10 @@ public class LengthValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Instantiates a new length validation config.
+	 * Instantiates a new length validation configuration.
 	 *
-	 * @param params the params
-	 * @param lang   the lang
+	 * @param params the parameter
+	 * @param lang   the language
 	 * @throws MissingParameterException the missing parameter exception
 	 * @throws WrongOperatorException    the wrong operator exception
 	 */
@@ -98,10 +98,10 @@ public class LengthValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the param.
+	 * Gets the parameter.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
 	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
@@ -120,8 +120,9 @@ public class LengthValidationConfig implements ValidationConfig {
 	/**
 	 * Equals.
 	 *
-	 * @param obj the obj
+	 * @param obj the object
 	 * @return true, if successful
+	 * 
 	 */
 	@Override
 	public boolean equals(Object obj) {

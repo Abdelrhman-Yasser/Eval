@@ -13,12 +13,12 @@ import com.ejada.validations.result.ValidationResult;
 public class ArabicLanguageValidator implements Validator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private ArabicValidationConfig config;
 
 	/**
-	 * Instantiates a new arabic language validator.
+	 * Instantiates a new Arabic language validator.
 	 */
 	public ArabicLanguageValidator() {
 		super();
@@ -26,9 +26,9 @@ public class ArabicLanguageValidator implements Validator {
 	}
 
 	/**
-	 * Instantiates a new arabic language validator.
+	 * Instantiates a new Arabic language validator.
 	 *
-	 * @param config the config
+	 * @param config the configuration
 	 */
 	public ArabicLanguageValidator(ArabicValidationConfig config) {
 		super();
@@ -38,10 +38,11 @@ public class ArabicLanguageValidator implements Validator {
 	/**
 	 * Validate.
 	 *
-	 * @param field     the field
+	 * @param field     the field to validate
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @throws ValidationConfigNotFound the validation configuration not found
+	 *
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -50,14 +51,13 @@ public class ArabicLanguageValidator implements Validator {
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	@Override
 	public <T> void setConfig(T config) {
-		// TODO Auto-generated method stub
 		this.config = (ArabicValidationConfig) config;
 	}
 

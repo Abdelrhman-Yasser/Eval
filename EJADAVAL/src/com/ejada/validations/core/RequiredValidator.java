@@ -13,7 +13,7 @@ import com.ejada.validations.result.ValidationResult;
 public class RequiredValidator implements Validator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private RequiredValidationConfig config;
 
@@ -22,27 +22,26 @@ public class RequiredValidator implements Validator {
 	 */
 	public RequiredValidator() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Instantiates a new required validator.
 	 *
-	 * @param config the config
+	 * @param config the configuration
+	 * 
 	 */
 	public RequiredValidator(RequiredValidationConfig config) {
 		super();
 		this.config = config;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Validate.
 	 *
-	 * @param field     the field
+	 * @param field     the field to be validated
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -50,16 +49,17 @@ public class RequiredValidator implements Validator {
 		valid &= field != "null";
 		valid &= field != "Null";
 		valid &= field != "{}";
+		valid &= field != "[]";
 		valid &= !field.trim().isEmpty();
 		valid &= field != null;
 		return new RequiredResult(valid, fieldName, (LangParam<?>) config.getParam(ParamType.Language));
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	@Override
 	public <T> void setConfig(T config) {

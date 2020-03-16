@@ -13,7 +13,7 @@ import com.ejada.validations.result.ValidationResult;
 public class NumericValidator implements Validator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private NumericValidationConfig config;
 
@@ -28,7 +28,7 @@ public class NumericValidator implements Validator {
 	/**
 	 * Instantiates a new numeric validator.
 	 *
-	 * @param config the config
+	 * @param config the configuration
 	 */
 	public NumericValidator(NumericValidationConfig config) {
 		super();
@@ -38,10 +38,10 @@ public class NumericValidator implements Validator {
 	/**
 	 * Validate.
 	 *
-	 * @param field     the field
+	 * @param field     the field to be validated
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -50,10 +50,10 @@ public class NumericValidator implements Validator {
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	@Override
 	public <T> void setConfig(T config) {

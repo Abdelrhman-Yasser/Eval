@@ -682,19 +682,6 @@ class ValidationsTests {
 	}
 
 	/**
-	 * Sanity nationalization change english.
-	 *
-	 * @throws IOException              Signals that an I/O exception has occurred.
-	 * @throws ValidationConfigNotFound the validation config not found
-	 */
-	@Test
-	void sanityNationalizationChangeEnglish() throws IOException, ValidationConfigNotFound {
-		String msg = Nationalization.getTranslation("testChange",
-				new LangParam<Language>(Language.English, ParamType.Language));
-		assertEquals(msg, "value");
-	}
-
-	/**
 	 * Sanity nationalization change arabic.
 	 *
 	 * @throws IOException              Signals that an I/O exception has occurred.
@@ -738,7 +725,7 @@ class ValidationsTests {
 		JsonValidationConfig valConfig = new JsonValidationConfig(obj, translationFile);
 
 		new ValidationSerializer();
-		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serialzieValidations(valConfig);
+		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serializeValidations(valConfig);
 		assertEquals(mapping.get("RPINFO").contains(new RequiredValidationConfig(Language.English)), true);
 		assertEquals(mapping.get("RPINFO.POI.POINUMBER").contains(new RequiredValidationConfig(Language.English)),
 				true);
@@ -776,7 +763,7 @@ class ValidationsTests {
 
 		JsonValidationConfig valConfig = new JsonValidationConfig(validationConfig, translationFile);
 
-		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serialzieValidations(valConfig);
+		HashMap<String, ArrayList<ValidationConfig>> mapping = ValidationSerializer.serializeValidations(valConfig);
 
 		file = new File("json test cases/request1.json");
 		JsonObject obj = Json.createReader(new FileInputStream(file)).readObject();

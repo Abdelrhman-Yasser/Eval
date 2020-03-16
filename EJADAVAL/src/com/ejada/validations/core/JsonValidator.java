@@ -23,12 +23,12 @@ import com.ejada.validations.result.ValidationResult;
 public class JsonValidator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private JsonValidationConfig config;
 
 	/**
-	 * Instantiates a new json validator.
+	 * Instantiates a new JSON validator.
 	 */
 	public JsonValidator() {
 		super();
@@ -37,13 +37,14 @@ public class JsonValidator {
 	/**
 	 * Validate.
 	 *
-	 * @param field the field
-	 * @return the array list
+	 * @param field the field to be validated
+	 * @return the validation results
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
-	 * @throws ValidationConfigNotFound        the validation config not found
+	 * @throws ValidationConfigNotFound        the validation configuration not
+	 *                                         found
 	 */
 	public ArrayList<ValidationResult> validate(String field) throws ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException, ValidationConfigNotFound {
@@ -52,18 +53,17 @@ public class JsonValidator {
 
 		ComplexIteratorValidator validator = new ComplexIteratorValidator();
 
-		HashMap<String, ArrayList<ValidationConfig>> configMap = ValidationSerializer.serialzieValidations(this.config);
+		HashMap<String, ArrayList<ValidationConfig>> configMap = ValidationSerializer.serializeValidations(this.config);
 
 		return validator.validate(obj, configMap);
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	public void setConfig(JsonValidationConfig config) {
-		// TODO Auto-generated method stub
 		this.config = config;
 	}
 

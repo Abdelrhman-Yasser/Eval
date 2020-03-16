@@ -12,25 +12,26 @@ import com.ejada.validations.result.ValidationResult;
 public interface Validator {
 
 	/**
-	 * Validate.
+	 * Validate field against specific validation.
 	 *
-	 * @param field     the field
+	 * @param field     the field to be validated
 	 * @param FieldName the field name
 	 * @return the validation result
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
-	 * @throws ValidationConfigNotFound        the validation config not found
+	 * @throws ValidationConfigNotFound        the validation configuration not
+	 *                                         found
 	 */
 	ValidationResult validate(String field, String FieldName) throws ValidationNotSupportedException,
 			MissingParameterException, WrongOperatorException, ValidationConfigNotFound;
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	public <T> void setConfig(T config);
 

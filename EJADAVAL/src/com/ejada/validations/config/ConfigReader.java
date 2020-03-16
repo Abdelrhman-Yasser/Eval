@@ -28,9 +28,10 @@ public class ConfigReader {
 	public static final String ENGLISH_TRANSLATION = "com/ejada/validations/config/translationsEng.properties";
 
 	/**
-	 * Instantiates a new config reader.
+	 * Instantiates a new configuration reader.
 	 *
 	 * @throws IOException Signals that an I/O exception has occurred.
+	 * 
 	 */
 	private ConfigReader() throws IOException {
 	}
@@ -38,9 +39,9 @@ public class ConfigReader {
 	/**
 	 * Read.
 	 *
-	 * @param file the file
-	 * @param key  the key
-	 * @return the string
+	 * @param file the properties file to read from
+	 * @param key  the key of property to read
+	 * @return the value of the key
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static String read(File file, String key) throws IOException {
@@ -52,9 +53,9 @@ public class ConfigReader {
 	/**
 	 * Read.
 	 *
-	 * @param file the file
-	 * @param key  the key
-	 * @return the string
+	 * @param file relative path of the properties file
+	 * @param key  the key of property to read
+	 * @return the value of the key
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static String read(String file, String key) throws IOException {
@@ -65,7 +66,7 @@ public class ConfigReader {
 	}
 
 	/**
-	 * Gets the prop.
+	 * Gets the properties file .
 	 *
 	 * @param file the file
 	 * @return the prop

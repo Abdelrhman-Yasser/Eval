@@ -16,12 +16,12 @@ import com.ejada.validations.params.ValidationParam;
 public class JsonValidationConfig implements ValidationConfig {
 
 	/**
-	 * The config.
+	 * The configuration.
 	 */
 	private JsonConfigParam config;
 
 	/**
-	 * The lang.
+	 * The language.
 	 */
 	private LangParam<?> lang;
 
@@ -31,9 +31,9 @@ public class JsonValidationConfig implements ValidationConfig {
 	private ValidationType type;
 
 	/**
-	 * Instantiates a new json validation config.
+	 * Instantiates a new JSON validation configuration.
 	 *
-	 * @param config          the config
+	 * @param config          the configuration
 	 * @param translationFile the translation file
 	 */
 	public JsonValidationConfig(JsonObject config, File translationFile) {
@@ -51,6 +51,7 @@ public class JsonValidationConfig implements ValidationConfig {
 	 * Gets the type.
 	 *
 	 * @return the type
+	 * 
 	 */
 	@Override
 	public ValidationType getType() {
@@ -58,10 +59,11 @@ public class JsonValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the param.
+	 * Gets the parameter.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
+	 * 
 	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {

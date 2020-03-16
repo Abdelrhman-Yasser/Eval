@@ -8,15 +8,15 @@ public class DateFormatParam implements ValidationParam<String> {
 	/**
 	 * The date format.
 	 */
-	String dateFormat ;
-	
+	String dateFormat;
+
 	/**
-	 * Instantiates a new date format param.
+	 * Instantiates a new date format parameter.
 	 *
 	 * @param dateFormat the date format
 	 */
 	public DateFormatParam(String dateFormat) {
-		this.dateFormat = dateFormat ;
+		this.dateFormat = dateFormat;
 	}
 
 	/**
@@ -26,7 +26,7 @@ public class DateFormatParam implements ValidationParam<String> {
 	 */
 	@Override
 	public String getValue() {
-		return this.dateFormat ;
+		return this.dateFormat;
 	}
 
 }

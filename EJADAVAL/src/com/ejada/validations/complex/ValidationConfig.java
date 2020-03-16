@@ -13,14 +13,14 @@ public interface ValidationConfig {
 	 *
 	 * @return the type
 	 */
-	ValidationType getType() ;
+	ValidationType getType();
 
 	/**
-	 * Gets the param.
+	 * Gets the parameter.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
 	 */
 	ValidationParam<?> getParam(ParamType type);
-	
+
 }

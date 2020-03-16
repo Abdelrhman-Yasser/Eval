@@ -70,6 +70,19 @@ public class Nationalization {
 	 */
 	public static String getTranslation(String key, LangParam<?> languageBundle) throws ValidationConfigNotFound {
 
+		/***************************************************************
+		 * 
+		 * Language bundle parameter has two forms could be
+		 * 
+		 * string path to default translation file in system which
+		 * 
+		 * is English or could be a File translation that user provide
+		 * 
+		 * 
+		 ***************************************************************
+		 **/
+
+		// Default language
 		if (languageBundle.getType() == ParamType.Language) {
 			String file = "";
 			try {
@@ -89,7 +102,9 @@ public class Nationalization {
 				throw new ValidationConfigNotFound(
 						((URLClassLoader) (Thread.currentThread().getContextClassLoader())).getURLs().toString());
 			}
-		} else {
+		}
+		// Translation file provided
+		else {
 			try {
 				File file = (File) languageBundle.getValue();
 				return ConfigReader.read(file, key);

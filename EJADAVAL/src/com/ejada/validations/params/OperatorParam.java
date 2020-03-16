@@ -10,10 +10,10 @@ public class OperatorParam implements ValidationParam<LengthOperator> {
 	/**
 	 * The operator.
 	 */
-	private LengthOperator operator ;
+	private LengthOperator operator;
 
 	/**
-	 * Instantiates a new operator param.
+	 * Instantiates a new operator parameter.
 	 *
 	 * @param operator the operator
 	 */
@@ -31,5 +31,5 @@ public class OperatorParam implements ValidationParam<LengthOperator> {
 	public LengthOperator getValue() {
 		return operator;
 	}
-	
+
 }

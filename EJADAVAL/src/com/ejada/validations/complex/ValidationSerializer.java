@@ -51,16 +51,18 @@ public class ValidationSerializer {
 	private static final String ValidationParamPointer = "params";
 
 	/**
-	 * Serialzie validations.
+	 * Serialize JSON validations to List of validation sonfigurations.
 	 *
-	 * @param config the config
+	 * @param config the configuration
+	 * 
 	 * @return the hash map
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
+	 * 
 	 */
-	public static HashMap<String, ArrayList<ValidationConfig>> serialzieValidations(JsonValidationConfig config)
+	public static HashMap<String, ArrayList<ValidationConfig>> serializeValidations(JsonValidationConfig config)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
 		HashMap<String, ArrayList<ValidationConfig>> mapping = new HashMap<String, ArrayList<ValidationConfig>>();
@@ -75,10 +77,10 @@ public class ValidationSerializer {
 	}
 
 	/**
-	 * Dfs.
+	 * Traverse JSON tree to validate objects.
 	 *
 	 * @param validations the validations
-	 * @param lang        the lang
+	 * @param lang        the language
 	 * @param key         the key
 	 * @param mapping     the mapping
 	 * @throws ValidationNotSupportedException the validation not supported
@@ -89,41 +91,75 @@ public class ValidationSerializer {
 	private static void dfs(JsonValue validations, LangParam<?> lang, String key,
 			HashMap<String, ArrayList<ValidationConfig>> mapping)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
+
+		/***********************************************************
+		 * 
+		 * Traverse JSON arrays to recurse on each item and
+		 * 
+		 * validate it separately
+		 * 
+		 ***********************************************************
+		 */
 		if (validations.getValueType().equals(ValueType.ARRAY)) {
 			JsonArray list = (JsonArray) validations;
 			for (JsonValue jsonValue : list) {
 				dfs(jsonValue, lang, key, mapping);
 			}
-		} else if (validations.getValueType().equals(ValueType.OBJECT)) {
+		}
+		/***********************************************************
+		 * 
+		 * 	Traverse JSON objects to recurse on each simple item and
+		 * 
+		 * 	validate it separately.
+		 * 
+		 *	JSON-SCHEMA:
+		 *
+		 *	OBJ{
+		 *		key:OBJ-KEY
+		 *		childs:[OBJ],
+		 *		validations:[VALOBJ],
+		 *	}
+		 *
+		 *
+		 ***********************************************************
+		 */
+		else if (validations.getValueType().equals(ValueType.OBJECT)) {
 
 			JsonObject parent = (JsonObject) validations;
 
+			// fetch field value
 			JsonString keyObj = parent.getJsonString(ValidationKeyPointer);
 			if (keyObj == null)
 				throw new MissingParameterException(key + (!key.isEmpty() ? dot : "") + ValidationKeyPointer);
 
+			// fetch validation list
 			JsonValue validationList = parent.get(ValidationPointer);
 			if (validationList == null)
 				throw new MissingParameterException(key + (!key.isEmpty() ? dot : "") + ValidationPointer);
 
+			// fetch children of node
 			JsonArray valueObj = parent.getJsonArray(ValuePointer);
 			if (valueObj == null)
 				throw new MissingParameterException(key + (!key.isEmpty() ? dot : "") + ValuePointer);
 
+			// build label of object like foo.bar.field
 			String labelName = key + (!key.isEmpty() ? dot : "") + keyObj.getString();
 
+			// build validation from list of JSON validations
 			buildValidations(valueObj, lang, labelName, mapping);
+
+			// recurse on children
 			dfs(validationList, lang, labelName, mapping);
 		}
 	}
 
 	/**
-	 * Builds the validations.
+	 * Builds the validations from JSON array of validations.
 	 *
-	 * @param validations the validations
-	 * @param lang        the lang
-	 * @param key         the key
-	 * @param mapping     the mapping
+	 * @param validations the array of validations
+	 * @param lang        the language
+	 * @param key         the key label
+	 * @param mapping     the mapping of configurations
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
@@ -138,12 +174,12 @@ public class ValidationSerializer {
 	}
 
 	/**
-	 * Builds the validation.
+	 * Builds a validation from JSON validation object.
 	 *
 	 * @param validations the validations
-	 * @param lang        the lang
-	 * @param key         the key
-	 * @param mapping     the mapping
+	 * @param lang        the language
+	 * @param key         the key label
+	 * @param mapping     the mapping of configurations
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
@@ -153,17 +189,67 @@ public class ValidationSerializer {
 			HashMap<String, ArrayList<ValidationConfig>> mapping)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException {
 
+		/***********************************************************
+		*	VALIDATION-JSON-SCHEMA:
+		*
+		*	VAL-OBJ{
+		*		type:VAL-TYPE
+		*		params:[list of key:value parameters],
+		*	}
+		*
+		*	validation types supported:
+		*	---------------------------
+		*		"Required"
+		*		"Number"
+		*		"Float"
+		*		"Length"
+		*		"ArabicLang"
+		*		"EnglishLang"
+		*		"Date"
+		*		"Email"
+		*
+		*
+		*	keys-supported:
+		*	---------------
+		*		"Length" --> number of length to compare with
+		*		"Operator" --> operator values:{"LESS THAN", "GREATER THAN" , "EQUAL"}
+		*		"Language" --> { "EN" , "AR" }
+		*		"DateFormat" --> like dd/MM/yyyy
+		*		
+		*   some validations don't require parameters as : 
+		*  	 	"Required"
+		*		"Number"
+		*		"Float"
+		*		"ArabicLang"
+		*		"EnglishLang"
+		*		"Email"
+		*
+		***********************************************************
+		*/
+		// fetch validation object
 		JsonObject ParamsObj = validations.getJsonObject(ValidationParamPointer);
 		if (ParamsObj == null)
 			throw new MissingParameterException(key + dot + ValuePointer + dot + ValidationParamPointer);
 
+		// fetch type of validation
 		JsonString TypeObj = validations.getJsonString(ValidationTypePointer);
 		if (TypeObj == null)
 			throw new MissingParameterException(key + dot + ValuePointer + dot + ValidationTypePointer);
 
+		// change string validation type to it's enum
 		ValidationType type = ValidationType.getByCode(TypeObj.getString());
 
+		// fetch list of validations to this specific key label
 		ArrayList<ValidationConfig> labelConfig = mapping.getOrDefault(key, new ArrayList<ValidationConfig>());
+		
+		/***************************************************************
+		 * 
+		 * 
+		 * Construct validation using JSON object of Validation
+		 * 
+		 * 
+		 ***************************************************************
+		 */
 		switch (type) {
 		case ArabicLang:
 			labelConfig.add(new ArabicValidationConfig(ParamsObj, lang));

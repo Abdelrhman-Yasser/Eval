@@ -280,46 +280,79 @@ public class API {
 			throws ValidationConfigNotFound, NotValidJson, ValidationNotSupportedException, MissingParameterException,
 			WrongOperatorException, NotSupportedLanguage, URISyntaxException {
 
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * 														   *			
+		 * Parsing APPIAN inputs to Java Objects				   *
+		 * 														   *
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 */
 		JsonObject config;
 		try {
+			// Use APPIAN content service to fetch file from APPIAN  
 			Document[] configJsonFile = sc.download((Long) configJson.getValue(), ContentConstants.VERSION_CURRENT,
 					false);
+			// Convert JSON file into json object 
 			config = Json.createReader(new FileInputStream(new File(configJsonFile[0].getInternalFilename())))
 					.readObject();
 		} catch (FileNotFoundException | InvalidContentException | InvalidVersionException | PrivilegeException e) {
+			// file not fount at APPIAN
 			throw new ValidationConfigNotFound();
 		} catch (JsonParsingException e) {
+			// JSON file has incorrect format
 			throw new NotValidJson();
 		}
 
+		/*******
+		 * 
+		 * trying to fetch translation file if it's sent from APPIAN otherwise 
+		 * English will be used to populate error messages 
+		 * 
+		 * ******/
 		File optionalTranslationFile = null;
-
 		if (languageDocument != null) {
 			try {
+				// fetch translation bundle file from APPIAN
 				Document[] trFile = sc.download((Long) languageDocument.getValue(), ContentConstants.VERSION_CURRENT,
 						false);
 				optionalTranslationFile = new File(trFile[0].getInternalFilename());
 			} catch (PrivilegeException | InvalidContentException | InvalidVersionException e) {
+				// translation file is passed but couldn't be found
 				throw new ValidationConfigNotFound("Translation File");
 			}
 		}
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+		
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * 														     *			
+		 * Building validators and set configuration for validations *
+		 * 														     *
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 */
 		JsonValidationConfig valConfig = new JsonValidationConfig(config, optionalTranslationFile);
-
 		JsonValidator validator = ValidatorFactory.getJsonValidator();
-
 		validator.setConfig(valConfig);
-
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 * 														     *			
+		 * validate JSON object using validators					 *
+		 * 														     *
+		 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+		 */
 		ArrayList<ValidationResult> valResults = validator.validate(objJson);
 
 		Set<String> unique = new HashSet<String>();
 		for (int i = 0; i < valResults.size(); i++) {
-			unique.add(valResults.get(i).toString());
+			String str = valResults.get(i).toString() ;
+			if(str != null)
+				unique.add(str);
 		}
 
 		String[] results = unique.toArray(new String[0]);
 		Arrays.sort(results, Collections.reverseOrder());
-
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		
 		return results;
 	}
 

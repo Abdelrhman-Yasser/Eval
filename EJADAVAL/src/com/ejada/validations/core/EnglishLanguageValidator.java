@@ -13,21 +13,21 @@ import com.ejada.validations.result.ValidationResult;
 public class EnglishLanguageValidator implements Validator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private EnglishValidationConfig config;
 
 	/**
-	 * Instantiates a new english language validator.
+	 * Instantiates a new English language validator.
 	 */
 	public EnglishLanguageValidator() {
 		super();
 	}
 
 	/**
-	 * Instantiates a new english language validator.
+	 * Instantiates a new English language validator.
 	 *
-	 * @param config the config
+	 * @param config the configuration
 	 */
 	public EnglishLanguageValidator(EnglishValidationConfig config) {
 		super();
@@ -37,10 +37,10 @@ public class EnglishLanguageValidator implements Validator {
 	/**
 	 * Validate.
 	 *
-	 * @param field     the field
+	 * @param field     the field to be validated
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -49,10 +49,10 @@ public class EnglishLanguageValidator implements Validator {
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
 	 */
 	@Override
 	public <T> void setConfig(T config) {

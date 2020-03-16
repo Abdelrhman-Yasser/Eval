@@ -15,25 +15,25 @@ import com.ejada.validations.params.ValidationParam;
 public class DateValidationConfig implements ValidationConfig {
 
 	/**
-	 * The type.
+	 * The type of validation.
 	 */
 	private ValidationType type;
 
 	/**
-	 * The lang.
+	 * The language can be a file or a language based on way of construction .
 	 */
 	private LangParam<?> lang;
 
 	/**
-	 * The date format.
+	 * The date format that will validate fields upon.
 	 */
 	private DateFormatParam dateFormat;
 
 	/**
-	 * Instantiates a new date validation config.
+	 * Instantiates a new date validation configuration.
 	 *
-	 * @param dateFormat the date format
-	 * @param lang       the lang
+	 * @param dateFormat the date format to validate on
+	 * @param lang       the language to populate error
 	 */
 	public DateValidationConfig(String dateFormat, Language lang) {
 		super();
@@ -43,10 +43,10 @@ public class DateValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Instantiates a new date validation config.
+	 * Instantiates a new date validation configuration.
 	 *
-	 * @param params the params
-	 * @param lang   the lang
+	 * @param params the JSON object of validations
+	 * @param lang   the language to populate errors
 	 * @throws MissingParameterException the missing parameter exception
 	 */
 	public DateValidationConfig(JsonObject params, LangParam<?> lang) throws MissingParameterException {
@@ -73,10 +73,11 @@ public class DateValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the param.
+	 * Gets the parameters of configuration.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
+	 * 
 	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
@@ -93,7 +94,7 @@ public class DateValidationConfig implements ValidationConfig {
 	/**
 	 * Equals.
 	 *
-	 * @param obj the obj
+	 * @param obj the object
 	 * @return true, if successful
 	 */
 	@Override

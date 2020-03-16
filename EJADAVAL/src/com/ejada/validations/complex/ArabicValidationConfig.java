@@ -13,19 +13,19 @@ import com.ejada.validations.params.ValidationParam;
 public class ArabicValidationConfig implements ValidationConfig {
 
 	/**
-	 * The type.
+	 * The type of validation.
 	 */
 	private ValidationType type;
 
 	/**
-	 * The lang.
+	 * The language can be a file or a language based on way of construction .
 	 */
 	private LangParam<?> lang;
 
 	/**
-	 * Instantiates a new arabic validation config.
+	 * Instantiates a new Arabic validation configuration.
 	 *
-	 * @param lang the lang
+	 * @param lang the language
 	 */
 	public ArabicValidationConfig(Language lang) {
 		super();
@@ -34,10 +34,11 @@ public class ArabicValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Instantiates a new arabic validation config.
+	 * Instantiates a new Arabic validation configuration.
 	 *
-	 * @param params the params
-	 * @param lang   the lang
+	 * @param params the JSON validation object for validations
+	 * @param lang   the language
+	 * 
 	 */
 	public ArabicValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
@@ -46,7 +47,7 @@ public class ArabicValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the type.
+	 * Gets the type of the validation.
 	 *
 	 * @return the type
 	 */
@@ -56,10 +57,10 @@ public class ArabicValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the param.
+	 * Gets the parameters based on type.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
 	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
@@ -74,7 +75,7 @@ public class ArabicValidationConfig implements ValidationConfig {
 	/**
 	 * Equals.
 	 *
-	 * @param obj the obj
+	 * @param obj the object
 	 * @return true, if successful
 	 */
 	@Override

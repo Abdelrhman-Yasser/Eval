@@ -8,7 +8,7 @@ package com.ejada.validations.params;
 public class LangParam<T> implements ValidationParam<T> {
 
 	/**
-	 * The lang.
+	 * The language.
 	 */
 	private T lang;
 
@@ -18,9 +18,9 @@ public class LangParam<T> implements ValidationParam<T> {
 	private ParamType type;
 
 	/**
-	 * Instantiates a new lang param.
+	 * Instantiates a new language param.
 	 *
-	 * @param lang            the lang
+	 * @param lang            the language
 	 * @param translationType the translation type
 	 */
 	public LangParam(T lang, ParamType translationType) {

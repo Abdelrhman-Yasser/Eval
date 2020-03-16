@@ -14,7 +14,7 @@ import com.ejada.validations.result.ValidationResult;
 public class LengthValidator implements Validator {
 
 	/**
-	 * The config.
+	 * The validation configuration.
 	 */
 	private LengthValidationConfig config;
 
@@ -28,7 +28,8 @@ public class LengthValidator implements Validator {
 	/**
 	 * Instantiates a new length validator.
 	 *
-	 * @param config the config
+	 * @param config the configuration
+	 * 
 	 */
 	public LengthValidator(LengthValidationConfig config) {
 		super();
@@ -36,12 +37,12 @@ public class LengthValidator implements Validator {
 	}
 
 	/**
-	 * Validate.
+	 * Validate field against length validations.
 	 *
-	 * @param field     the field
+	 * @param field     the field to be validated
 	 * @param fieldName the field name
 	 * @return the validation result
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	@Override
 	public ValidationResult validate(String field, String fieldName) throws ValidationConfigNotFound {
@@ -63,10 +64,11 @@ public class LengthValidator implements Validator {
 	}
 
 	/**
-	 * Sets the config.
+	 * Sets the configuration.
 	 *
 	 * @param <T>    the generic type
-	 * @param config the new config
+	 * @param config the new configuration
+	 * 
 	 */
 	@Override
 	public <T> void setConfig(T config) {

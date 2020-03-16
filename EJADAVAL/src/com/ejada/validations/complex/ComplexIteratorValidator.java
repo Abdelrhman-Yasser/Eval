@@ -32,17 +32,17 @@ public class ComplexIteratorValidator {
 	private static final String dot = ".";
 
 	/**
-	 * The keys collected val.
+	 * The keys collected from validations.
 	 */
 	private Set<String> keysCollectedVal;
 
 	/**
-	 * The keys collected obj.
+	 * The keys collected from JSON Object.
 	 */
 	private Set<String> keysCollectedObj;
 
 	/**
-	 * The req label lang.
+	 * The language of required labels.
 	 */
 	private HashMap<String, LangParam<?>> reqLabelLang;
 
@@ -58,22 +58,38 @@ public class ComplexIteratorValidator {
 	/**
 	 * Validate.
 	 *
-	 * @param obj     the obj
-	 * @param configs the configs
+	 * @param obj     the JSON object to be validated
+	 * @param configs the validation configurations
 	 * @return the array list
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
-	 * @throws ValidationConfigNotFound        the validation config not found
+	 * @throws ValidationConfigNotFound        the validation configuration not
+	 *                                         found
 	 */
 	public ArrayList<ValidationResult> validate(JsonObject obj, HashMap<String, ArrayList<ValidationConfig>> configs)
 			throws ValidationNotSupportedException, MissingParameterException, WrongOperatorException,
 			ValidationConfigNotFound {
 
 		ArrayList<ValidationResult> results = new ArrayList<ValidationResult>();
+
+		/*******************************************************************
+		 *
+		 * Traverse JSON object as a Tree structure and validates each
+		 * 
+		 * object based on validation configurations
+		 * 
+		 ********************************************************************/
 		dfs(obj, "", -1, configs, results);
 
+		/*******************************************************************
+		 *
+		 * Collect keys that don't appear in JSON Object and it's required
+		 * 
+		 * to validate it and populate errors
+		 * 
+		 ********************************************************************/
 		collectRequired(configs);
 		checkNotFoundFields(results);
 
@@ -83,33 +99,57 @@ public class ComplexIteratorValidator {
 	/**
 	 * Dfs.
 	 *
-	 * @param obj     the obj
-	 * @param key     the key
-	 * @param order   the order
-	 * @param mapping the mapping
-	 * @param results the results
+	 * @param obj     the JSON object to be validated
+	 * @param key     the key label of object
+	 * @param order   the iteration order of iterative objects
+	 * @param mapping the validation configurations of each object in JSON object
+	 * @param results the validation results
+	 * 
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
 	 * @throws WrongOperatorException          the wrong operator exception
-	 * @throws ValidationConfigNotFound        the validation config not found
+	 * @throws ValidationConfigNotFound        the validation configuration not
+	 *                                         found
 	 */
 	private void dfs(JsonValue obj, String key, int order, HashMap<String, ArrayList<ValidationConfig>> mapping,
 			ArrayList<ValidationResult> results) throws ValidationNotSupportedException, MissingParameterException,
 			WrongOperatorException, ValidationConfigNotFound {
 
+		// collect keys of objects traversed to be checked later for misssing objects
 		if (key != "")
 			keysCollectedObj.add(key);
 
+		/****************************************************************
+		 * 
+		 * Traversing JSON array objects and check validation on each
+		 * 
+		 * each item in the array recursively
+		 * 
+		 **************************************************************/
 		if (obj.getValueType().equals(ValueType.ARRAY)) {
+
 			JsonArray list = (JsonArray) obj;
 			ArrayList<ValidationConfig> valConfig = mapping.getOrDefault(key, new ArrayList<ValidationConfig>());
+
+			// validate item in the array
 			excuteValidations(list.toString(), key, valConfig, results);
+
+			// recurse on current item
 			for (int i = 0; i < list.size(); i++) {
 				JsonValue jsonValue = list.get(i);
 				dfs(jsonValue, key, i, mapping, results);
 			}
-		} else if (obj.getValueType().equals(ValueType.OBJECT)) {
+
+		}
+		/****************************************************************
+		 * 
+		 * Traversing JSON object by fetching all keys in them and
+		 * 
+		 * iterate on them to validate simple objects
+		 * 
+		 **************************************************************/
+		else if (obj.getValueType().equals(ValueType.OBJECT)) {
 			JsonObject parent = (JsonObject) obj;
 			ArrayList<ValidationConfig> valConfig = mapping.getOrDefault(key, new ArrayList<ValidationConfig>());
 			excuteValidations(parent.toString(), key + "[" + order + "]", valConfig, results);
@@ -117,7 +157,17 @@ public class ComplexIteratorValidator {
 				String labelName = key + (!key.isEmpty() ? dot : "") + child;
 				dfs(parent.get(child), labelName, 0, mapping, results);
 			}
-		} else if (obj.getValueType().equals(ValueType.STRING)) {
+		}
+		/**************************************************************
+		 * 
+		 * Validate simple objects using complex validator that
+		 * 
+		 * validates a field with multiple validation configuration
+		 * 
+		 * and populate errors
+		 * 
+		 **************************************************************/
+		else if (obj.getValueType().equals(ValueType.STRING)) {
 			JsonString parent = (JsonString) obj;
 			ArrayList<ValidationConfig> valConfig = mapping.getOrDefault(key, new ArrayList<ValidationConfig>());
 			excuteValidations(parent.toString(), key + "[" + order + "]", valConfig, results);
@@ -125,10 +175,11 @@ public class ComplexIteratorValidator {
 	}
 
 	/**
-	 * Check not found fields.
+	 * Check required fields that don't appear in JSON object.
 	 *
-	 * @param results the results
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @param results the validation results
+	 * @throws ValidationConfigNotFound the validation configuration not found
+	 * 
 	 */
 	private void checkNotFoundFields(ArrayList<ValidationResult> results) throws ValidationConfigNotFound {
 		for (String key : keysCollectedVal) {
@@ -139,12 +190,12 @@ public class ComplexIteratorValidator {
 	}
 
 	/**
-	 * Excute validations.
+	 * Execute validations on each field using complex validator.
 	 *
-	 * @param field     the field
-	 * @param fieldName the field name
-	 * @param config    the config
-	 * @param results   the results
+	 * @param field     the JSON object to be validated
+	 * @param fieldName the key label of object
+	 * @param config    the validation configurations
+	 * @param results   the results of validations
 	 * @throws ValidationNotSupportedException the validation not supported
 	 *                                         exception
 	 * @throws MissingParameterException       the missing parameter exception
@@ -158,9 +209,10 @@ public class ComplexIteratorValidator {
 	}
 
 	/**
-	 * Collect required.
+	 * Collect required objects from validation configurations.
 	 *
-	 * @param mapping the mapping
+	 * @param mapping configurations of each key in JSON object
+	 * 
 	 */
 	private void collectRequired(HashMap<String, ArrayList<ValidationConfig>> mapping) {
 		for (Entry<String, ArrayList<ValidationConfig>> val : mapping.entrySet()) {
@@ -171,11 +223,11 @@ public class ComplexIteratorValidator {
 	}
 
 	/**
-	 * Contains required.
+	 * Check configurations contain a required configuration.
 	 *
-	 * @param config the config
-	 * @param key    the key
-	 * @return true, if successful
+	 * @param config the validations configuration to check.
+	 * @param key    Key label of object
+	 * @return true, if contains a required validation.
 	 */
 	private boolean ContainsRequired(ArrayList<ValidationConfig> config, String key) {
 		boolean res = false;

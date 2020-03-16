@@ -8,14 +8,14 @@ import javax.json.JsonObject;
 public class JsonConfigParam implements ValidationParam<JsonObject> {
 
 	/**
-	 * The config.
+	 * The configuration.
 	 */
 	private JsonObject config;
 
 	/**
-	 * Instantiates a new json config param.
+	 * Instantiates a new JSON configuration parameter.
 	 *
-	 * @param config the config
+	 * @param config the configuration
 	 */
 	public JsonConfigParam(JsonObject config) {
 		super();

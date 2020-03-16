@@ -13,19 +13,20 @@ import com.ejada.validations.params.ValidationParam;
 public class NumericValidationConfig implements ValidationConfig {
 
 	/**
-	 * The type.
+	 * The type of validation.
 	 */
 	private ValidationType type;
 
 	/**
-	 * The lang.
+	 * The language.
 	 */
 	private LangParam<?> lang;
 
 	/**
-	 * Instantiates a new numeric validation config.
+	 * Instantiates a new numeric validation configuration.
 	 *
-	 * @param lang the lang
+	 * @param lang the language
+	 * 
 	 */
 	public NumericValidationConfig(Language lang) {
 		super();
@@ -34,10 +35,11 @@ public class NumericValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Instantiates a new numeric validation config.
+	 * Instantiates a new numeric validation configuration.
 	 *
-	 * @param params the params
-	 * @param lang   the lang
+	 * @param params the parameter
+	 * @param lang   the language
+	 * 
 	 */
 	public NumericValidationConfig(JsonObject params, LangParam<?> lang) {
 		super();
@@ -56,10 +58,11 @@ public class NumericValidationConfig implements ValidationConfig {
 	}
 
 	/**
-	 * Gets the param.
+	 * Gets the parameter.
 	 *
 	 * @param type the type
-	 * @return the param
+	 * @return the parameter
+	 * 
 	 */
 	@Override
 	public ValidationParam<?> getParam(ParamType type) {
@@ -74,8 +77,9 @@ public class NumericValidationConfig implements ValidationConfig {
 	/**
 	 * Equals.
 	 *
-	 * @param obj the obj
+	 * @param obj the object
 	 * @return true, if successful
+	 * 
 	 */
 	@Override
 	public boolean equals(Object obj) {

@@ -30,12 +30,12 @@ public class ArabicLanguageResult implements ValidationResult {
 	private boolean valid;
 
 	/**
-	 * Instantiates a new arabic language result.
+	 * Instantiates a new Arabic language result.
 	 *
 	 * @param valid     the valid
 	 * @param fieldName the field name
-	 * @param lang      the lang
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @param lang      the language
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	public ArabicLanguageResult(boolean valid, String fieldName, LangParam<?> lang) throws ValidationConfigNotFound {
 		super();
@@ -54,7 +54,7 @@ public class ArabicLanguageResult implements ValidationResult {
 		if (!valid)
 			return get_error_message();
 		else
-			return fieldName + " validated true";
+			return null;
 	}
 
 	/**

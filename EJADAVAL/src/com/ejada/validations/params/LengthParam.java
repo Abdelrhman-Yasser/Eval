@@ -4,14 +4,14 @@ package com.ejada.validations.params;
  * The Class LengthParam.
  */
 public class LengthParam implements ValidationParam<Integer> {
-	
+
 	/**
 	 * The length.
 	 */
 	private int length;
 
 	/**
-	 * Instantiates a new length param.
+	 * Instantiates a new length parameter.
 	 *
 	 * @param length the length
 	 */

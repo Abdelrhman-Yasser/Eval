@@ -8,14 +8,14 @@ import java.io.File;
 public class ErrorTranslationConfigParam implements ValidationParam<File> {
 
 	/**
-	 * The config.
+	 * The configuration.
 	 */
 	private File config;
 
 	/**
-	 * Instantiates a new error translation config param.
+	 * Instantiates a new error translation configuration parameter.
 	 *
-	 * @param config the config
+	 * @param config the configuration
 	 */
 	public ErrorTranslationConfigParam(File config) {
 		super();

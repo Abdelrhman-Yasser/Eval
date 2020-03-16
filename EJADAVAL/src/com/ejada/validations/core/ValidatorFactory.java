@@ -8,14 +8,14 @@ import com.ejada.validations.complex.ValidationType;
 public class ValidatorFactory {
 
 	/**
-	 * The arabic language validator.
+	 * The Arabic language validator.
 	 */
 	private static ArabicLanguageValidator arabicLanguageValidator;
 
 	/**
-	 * Gets the arabic language validator.
+	 * Gets the Arabic language validator.
 	 *
-	 * @return the arabic language validator
+	 * @return the Arabic language validator
 	 */
 	private synchronized static ArabicLanguageValidator getArabicLanguageValidator() {
 		if (arabicLanguageValidator == null)
@@ -29,9 +29,9 @@ public class ValidatorFactory {
 	private static EnglishLanguageValidator EnglishLanguageValidator;
 
 	/**
-	 * Gets the english language validator.
+	 * Gets the English language validator.
 	 *
-	 * @return the english language validator
+	 * @return the English language validator
 	 */
 	private synchronized static EnglishLanguageValidator getEnglishLanguageValidator() {
 		if (EnglishLanguageValidator == null)
@@ -136,14 +136,14 @@ public class ValidatorFactory {
 	}
 
 	/**
-	 * The json validator.
+	 * The JSON validator.
 	 */
 	private static JsonValidator jsonValidator;
 
 	/**
-	 * Gets the json validator.
+	 * Gets the JSON validator.
 	 *
-	 * @return the json validator
+	 * @return the JSON validator
 	 */
 	public synchronized static JsonValidator getJsonValidator() {
 		if (jsonValidator == null)

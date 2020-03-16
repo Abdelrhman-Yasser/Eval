@@ -34,8 +34,8 @@ public class FloatResult implements ValidationResult {
 	 *
 	 * @param valid     the valid
 	 * @param fieldName the field name
-	 * @param lang      the lang
-	 * @throws ValidationConfigNotFound the validation config not found
+	 * @param lang      the language
+	 * @throws ValidationConfigNotFound the validation configuration not found
 	 */
 	public FloatResult(boolean valid, String fieldName, LangParam<?> lang) throws ValidationConfigNotFound {
 		super();
@@ -54,7 +54,7 @@ public class FloatResult implements ValidationResult {
 		if (!valid)
 			return get_error_message();
 		else
-			return fieldName + " validated true";
+			return null;
 	}
 
 	/**

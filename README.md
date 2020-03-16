@@ -10,6 +10,7 @@ This is Appian plugin source code which handles validations to text fields in Ap
   6. Email validation
   7. Length with custom operators (<,>,=)
   8. Required validation
+  9. JSON schema validation
 
 # Deploying to Appian :
   1. Download Jar file from [here](https://github.com/Abdelrhman-Yasser/Ejada-Validations/releases).

@@ -1,4 +1,4 @@
-# Ejada-Validations :
+# Eval :
 This is Appian plugin source code which handles validations to text fields in Appian, Extending Text Functionalities in Appian by providing a set of functions that validates that given text fields exist in specific Appian format, to isolate business handling and validations.
 
 # Validations supported :

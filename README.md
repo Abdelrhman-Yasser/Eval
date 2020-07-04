@@ -22,5 +22,5 @@ This is Appian plugin source code which handles validations to text fields in Ap
 
 # Documentation :
 
-  Kindly find java documentation of the library [Here](https://abdelrhman-yasser.github.io/Ejada-Validations/)  
+  Kindly find java documentation of the library [Here](https://abdelrhman-yasser.github.io/Eval/)  
   
